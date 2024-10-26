@@ -49,15 +49,11 @@ const Acceleration: React.FC = () => {
     <>
       <Stack.Screen
         options={{
-          header: () => (
-            <SearchHeader
-              onSearch={(text) => {
-                // Add acceleration-specific search logic here
-                console.log(`Searching acceleration units for ${text}`);
-              }}
-              placeholder="Search acceleration units..."
-            />
-          ),
+          headerSearchHandler: (text) => {
+            // Add acceleration-specific search logic here
+            console.log(`Searching acceleration units for ${text}`);
+          },
+          headerPlaceholder: "Search acceleration units...",
         }}
       />
       <ScrollView className="p-4">

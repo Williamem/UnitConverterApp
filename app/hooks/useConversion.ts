@@ -1,17 +1,28 @@
-import { useState, useEffect } from 'react';
-import { convert } from '../utils/conversionLogic';
+import { unitDefinitions } from '../constants/unitDefinitions';
 
-export function useConversion(fromUnit: string, toUnit: string) {
-  const [fromValue, setFromValue] = useState('');
-  const [toValue, setToValue] = useState('');
+type UnitCategory = keyof typeof unitDefinitions;
+type ConversionFactors<T extends UnitCategory> = typeof unitDefinitions[T]['conversions'];
 
-  useEffect(() => {
-    if (fromValue !== '') {
-      const result = convert(parseFloat(fromValue), fromUnit, toUnit);
-      setToValue(result.toFixed(4));
+export const useConversion = () => {
+  const convert = <T extends UnitCategory>(
+    category: T,
+    value: number,
+    fromUnit: keyof ConversionFactors<T>,
+    toUnit: keyof ConversionFactors<T>
+  ): number => {
+    const categoryData = unitDefinitions[category];
+    const conversions = categoryData.conversions as { [key: string]: number };
+    
+    const fromFactor = conversions[fromUnit as string];
+    const toFactor = conversions[toUnit as string];
+    
+    if (typeof fromFactor !== 'number' || typeof toFactor !== 'number') {
+      throw new Error(`Invalid conversion factors for ${category}: ${String(fromUnit)} to ${String(toUnit)}`);
     }
-  }, [fromValue, fromUnit, toUnit]);
+    
+    // Convert to base unit, then to target unit
+    return (value * fromFactor) / toFactor;
+  };
 
-  return { fromValue, setFromValue, toValue };
-}
-
+  return { convert };
+};

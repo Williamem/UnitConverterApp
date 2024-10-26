@@ -8,7 +8,7 @@ The Unit Converter App is a comprehensive, user-friendly mobile application deve
 
 ### Home Screen
 - The home screen features a grid layout with large, visually appealing icons representing different conversion categories (e.g., Length, Volume, Temperature).
-- Each category icon is designed with a distinct color and recognizable symbol, making it easy for users to quickly identify their desired conversion type.
+- Each category icon is designed with a recognizable symbol with category name below, making it easy for users to quickly identify their desired conversion type.
 - The layout is responsive, adjusting to different screen sizes while maintaining an aesthetically pleasing arrangement.
 - At the top of the home screen, users can choose from display options:
   1. Show All Categories
@@ -29,7 +29,7 @@ The Unit Converter App is a comprehensive, user-friendly mobile application deve
 - The conversion screen includes:
   - A list of all input/output fields for entering values, with user's favorite units displayed at the top
   - A visually clear display of the conversion result, when writing in an input field all other inputs immediately display the result 
-  - A dropdown or expandable section allowing users to customize which units are displayed:
+- At the top of the screen, users can choose from display options:
     * Show All Units
     * Show Common Units
     * Show Favorites

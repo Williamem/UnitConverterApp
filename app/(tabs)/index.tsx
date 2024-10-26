@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Link, Stack } from 'expo-router';
 import CustomHeader from '../components/CustomHeader';
+
 export default function HomeScreen() {
   return (
     <>
@@ -9,7 +10,11 @@ export default function HomeScreen() {
         options={{
           header: () => (
             <CustomHeader
-              onSearch={(text: string) => console.log(`Searching home for ${text}`)}
+              screenName="Home"
+              onSearch={(text: string, screenName: string) => {
+                // Add home-specific search logic here
+                console.log(`Searching ${screenName} for ${text}`);
+              }}
               placeholder="Search categories..."
               showBackButton={false}
               showSettingsButton={true}

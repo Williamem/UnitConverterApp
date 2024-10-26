@@ -8,7 +8,10 @@ export default function RootLayout() {
       screenOptions={({ route }) => ({
         header: () => (
           <CustomHeader
-            onSearch={(text: string) => console.log(`Searching for ${text} in ${route.name}`)}
+            screenName={route.name}
+            onSearch={(text: string, screenName: string) => 
+              console.log(`Searching for ${text} in ${screenName}`)
+            }
             placeholder={`Search in ${route.name}...`}
             showBackButton={true}
             showSettingsButton={true}

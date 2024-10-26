@@ -4,13 +4,15 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 type CustomHeaderProps = {
-  onSearch: (text: string) => void;
+  screenName: string;
+  onSearch: (text: string, screenName: string) => void;
   placeholder?: string;
   showBackButton?: boolean;
   showSettingsButton?: boolean;
 };
 
 const CustomHeader: React.FC<CustomHeaderProps> = ({
+  screenName,
   onSearch,
   placeholder = "Search...",
   showBackButton = true,
@@ -28,7 +30,7 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
       <TextInput
         className="flex-1 bg-gray-100 p-2 rounded-full"
         placeholder={placeholder}
-        onChangeText={onSearch}
+        onChangeText={(text) => onSearch(text, screenName)}
       />
       {showSettingsButton && (
         <TouchableOpacity onPress={() => router.push('/settings')} className="ml-2">

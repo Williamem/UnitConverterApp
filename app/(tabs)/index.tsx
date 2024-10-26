@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Link } from 'expo-router';
-import { useCustomHeader } from '../hooks/useCustomHeader';
-
+import { Link, Stack } from 'expo-router';
+import CustomHeader from '../components/CustomHeader';
 export default function HomeScreen() {
-  const { setHeaderOptions } = useCustomHeader();
-
-  useEffect(() => {
-    setHeaderOptions({
-      headerSearchHandler: (text: string) => {
-        // Add home-specific search logic here
-        console.log(`Searching home for ${text}`);
-      },
-      headerPlaceholder: "Search categories...",
-      headerShowBackButton: false, // Hide back button on home screen
-    });
-  }, []);
-
   return (
-    <View className="flex-1 justify-center items-center">
-      <Text className="text-2xl font-bold mb-4">Unit Converter</Text>
-      <Link href="/categories/Acceleration" asChild>
-        <TouchableOpacity className="bg-blue-500 p-2 rounded">
-          <Text className="text-white">Go to Acceleration</Text>
-        </TouchableOpacity>
-      </Link>
-    </View>
+    <>
+      <Stack.Screen
+        options={{
+          header: () => (
+            <CustomHeader
+              onSearch={(text: string) => console.log(`Searching home for ${text}`)}
+              placeholder="Search categories..."
+              showBackButton={false}
+              showSettingsButton={true}
+            />
+          ),
+        }}
+      />
+      <View className="flex-1 justify-center items-center">
+        <Text className="text-2xl font-bold mb-4">Unit Converter</Text>
+        <Link href="/categories/Acceleration" asChild>
+          <TouchableOpacity className="bg-blue-500 p-2 rounded">
+            <Text className="text-white">Go to Acceleration</Text>
+          </TouchableOpacity>
+        </Link>
+      </View>
+    </>
   );
 }

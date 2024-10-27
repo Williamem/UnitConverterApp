@@ -1,16 +1,21 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Link } from "expo-router";
 
 type CategoryIconProps = {
   name: string;
-  color: string;
+  icon: string;
 };
 
-export default function CategoryIcon({ name, color }: CategoryIconProps) {
+export default function CategoryIcon({ name, icon }: CategoryIconProps) {
   return (
-    <View className={`w-20 h-20 rounded-full justify-center items-center`} style={{ backgroundColor: color }}>
-      <Text className="text-white text-2xl font-bold">{name[0]}</Text>
-    </View>
+    <Link href={`../categories/${name}`} asChild>
+      <TouchableOpacity>
+        <View className={`w-20 h-20 rounded-full justify-center items-center bg-blue-500`}>
+          <Text className="text-white text-2xl font-bold">{icon}</Text>
+        </View>
+        <Text className="text-center mt-2">{name}</Text>
+      </TouchableOpacity>
+    </Link>
   );
 }
-

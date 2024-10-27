@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Link, Stack } from 'expo-router';
+import { View, Text, ScrollView } from 'react-native';
+import { Stack } from 'expo-router';
 import CustomHeader from '../components/CustomHeader';
+import CategoryIcon from '../components/CategoryIcon';
 
 export default function HomeScreen() {
   return (
@@ -22,14 +23,16 @@ export default function HomeScreen() {
           ),
         }}
       />
-      <View className="flex-1 justify-center items-center bg-slate-500">
+      <ScrollView className="flex-1 bg-white p-4">
         <Text className="text-2xl font-bold mb-4">Unit Converter</Text>
-        <Link href="/categories/Acceleration" asChild>
-          <TouchableOpacity className="bg-blue-500 p-2 rounded">
-            <Text className="text-white">Go to Acceleration</Text>
-          </TouchableOpacity>
-        </Link>
-      </View>
+        <View className="flex-row flex-wrap justify-around">
+          <CategoryIcon name="Acceleration" icon="🚀" />
+          <CategoryIcon name="Area" icon="📏" />
+          <CategoryIcon name="Energy" icon="⚡" />
+          <CategoryIcon name="Length" icon="📏" />
+          {/* Add more CategoryIcons as needed */}
+        </View>
+      </ScrollView>
     </>
   );
 }

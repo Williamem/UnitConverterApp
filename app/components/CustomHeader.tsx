@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type CustomHeaderProps = {
   screenName: string;
@@ -21,7 +22,8 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
   const router = useRouter();
 
   return (
-    <View className="flex-row items-center bg-white p-2">
+    <SafeAreaView edges={["top"]} className="bg-white">
+    <View className="flex-row items-center bg-blue-500 p-2">
       {showBackButton && (
         <TouchableOpacity onPress={() => router.back()} className="mr-2">
           <Ionicons name="arrow-back" size={24} color="black" />
@@ -37,7 +39,8 @@ const CustomHeader: React.FC<CustomHeaderProps> = ({
           <Ionicons name="settings-outline" size={24} color="black" />
         </TouchableOpacity>
       )}
-    </View>
+      </View>
+    </SafeAreaView>
   );
 };
 

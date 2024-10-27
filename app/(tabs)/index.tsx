@@ -22,7 +22,7 @@ export default function HomeScreen() {
           ),
         }}
       />
-      <View className="flex-1 justify-center items-center">
+      <View className="flex-1 justify-center items-center bg-slate-500">
         <Text className="text-2xl font-bold mb-4">Unit Converter</Text>
         <Link href="/categories/Acceleration" asChild>
           <TouchableOpacity className="bg-blue-500 p-2 rounded">

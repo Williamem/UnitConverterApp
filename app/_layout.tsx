@@ -1,8 +1,8 @@
+import '../global.css';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Stack } from 'expo-router';
 import CustomHeader from './components/CustomHeader';
 import './types'; // Import the types extension
-import './global.css';
 export default function RootLayout() {
   return (
     <SafeAreaProvider>

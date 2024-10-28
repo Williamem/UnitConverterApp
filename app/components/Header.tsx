@@ -3,6 +3,7 @@ import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Link } from 'expo-router';
 
 type HeaderProps = {
   screenName: string;
@@ -54,14 +55,15 @@ const Header: React.FC<HeaderProps> = ({
           </Text>
         )}
 
-        <TouchableOpacity
-          onPress={() => router.push("/settings")}
-          className="p-2 active:bg-background-tertiary rounded-full"
-        >
-          <Text>
-            <Ionicons name="settings-outline" size={24} color="#475569" />
-          </Text>
-        </TouchableOpacity>
+        <Link href="/settings" asChild>
+          <TouchableOpacity
+            className="p-2 active:bg-background-tertiary rounded-full"
+          >
+            <Text>
+              <Ionicons name="settings-outline" size={24} color="#475569" />
+            </Text>
+          </TouchableOpacity>
+        </Link>
       </View>
     </SafeAreaView>
   );

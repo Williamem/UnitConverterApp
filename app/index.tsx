@@ -12,6 +12,7 @@ export default function HomeScreen() {
         <View className="flex-row flex-wrap justify-around">
           <CategoryIcon name="Acceleration" icon="🚀" />
           <CategoryIcon name="Area" icon="📏" />
+          <CategoryIcon name="DataStorage" icon="💾" />
           <CategoryIcon name="Energy" icon="⚡" />
           <CategoryIcon name="Length" icon="📏" />
           {/* Add more CategoryIcons as needed */}

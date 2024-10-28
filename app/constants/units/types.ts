@@ -1,9 +1,10 @@
-import { acceleration, distance, weight } from './';
+import { acceleration, distance, weight, dataStorage } from './';
 
 export const unitDefinitions = {
   acceleration,
   distance,
-  weight
+  weight,
+  dataStorage
   // Add more as we implement them
 } as const;
 

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, TextInput, Modal, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useConversion } from '../../hooks/useConversion';
 import type { CategoryDefinition, UnitCategory } from '../../constants/units/types';
 import * as unitDefinitions from '../../constants/units/';
+import { getUniqueUnits } from './utils';
 
 interface UnitConverterProps {
   unitCategory: UnitCategory;
@@ -16,12 +17,15 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const unitData = unitDefinitions[unitCategory];
-  const allUnits = Object.values(unitData.categories).flat();
+  const displayUnits = useMemo(() => 
+    getUniqueUnits(Array.from(selectedCategories), unitData.categories),
+    [selectedCategories, unitData.categories]
+  );
   const { convert } = useConversion();
 
   useEffect(() => {
     const initialValues: Record<string, string> = {};
-    allUnits.forEach(unit => {
+    displayUnits.forEach(unit => {
       initialValues[unit] = '';
     });
     setValues(initialValues);
@@ -31,7 +35,7 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
     const numValue = parseFloat(value);
     if (!isNaN(numValue)) {
       const newValues: Record<string, string> = {};
-      allUnits.forEach(otherUnit => {
+      displayUnits.forEach(otherUnit => {
         if (otherUnit === unit) {
           newValues[otherUnit] = value;
         } else {
@@ -48,16 +52,6 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
     } else {
       setValues(prev => ({ ...prev, [unit]: value }));
     }
-  };
-
-  const getFilteredUnits = () => {
-    if (selectedCategories.has('all')) {
-      return allUnits;
-    }
-    
-    return Object.entries(unitData.categories)
-      .filter(([category]) => selectedCategories.has(category))
-      .flatMap(([_, units]) => units);
   };
 
   return (
@@ -131,7 +125,7 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
           </TouchableOpacity>
         </View>
 
-        {getFilteredUnits().map(unit => (
+        {displayUnits.map(unit => (
           <View key={unit} className="mb-4 flex-row items-stretch h-12">
             <TouchableOpacity 
               className="min-w-[120px] flex-1 mr-4 flex-row items-center bg-background-secondary rounded-lg px-3 active:bg-background-tertiary"

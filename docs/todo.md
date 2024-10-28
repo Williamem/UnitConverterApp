@@ -1,0 +1,2 @@
+- favorites
+- my units, "i" opens modal with short explanation and options to add/remove units. Is standard option

@@ -1,10 +1,45 @@
-import { acceleration, distance, weight, dataStorage } from './';
+import { 
+  acceleration,
+  distance,
+  weight,
+  dataStorage,
+  area,
+  volume,
+  temperature,
+  velocity,
+  energy,
+  radiation,
+  pressure,
+  power,
+  fuelEconomy,
+  frequency,
+  digitalResolution,
+  density,
+  torque,
+  angle,
+  dataTransferRate,
+} from './';
 
 export const unitDefinitions = {
   acceleration,
   distance,
   weight,
-  dataStorage
+  dataStorage,
+  area,
+  volume,
+  temperature,
+  velocity,
+  energy,
+  radiation,
+  pressure,
+  power,
+  fuelEconomy,
+  frequency,
+  digitalResolution,
+  density,
+  torque,
+  angle,
+  dataTransferRate,
   // Add more as we implement them
 } as const;
 

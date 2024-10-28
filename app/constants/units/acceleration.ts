@@ -2,6 +2,7 @@ import { CategoryDefinition } from './types';
 
 export const acceleration: CategoryDefinition = {
   baseUnit: 'meter per second squared',
+  description: 'Acceleration measures the rate of change of velocity. While metric units are standard in science, g-force is commonly used to describe acceleration in terms of Earth\'s gravity.',
   categories: {
     metric: ['meter per second squared'],
     imperial: ['foot per second squared'],
@@ -32,4 +33,3 @@ export const acceleration: CategoryDefinition = {
     'g-force (standard gravity)': 9.80665
   }
 };
-

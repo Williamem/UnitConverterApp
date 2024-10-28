@@ -2,6 +2,7 @@ import { CategoryDefinition } from './types';
 
 export const weight: CategoryDefinition = {
   baseUnit: 'kilogram',
+  description: 'Weight (mass) units vary by region and use case. Metric units are standard in science, imperial units are common in the US and UK, and specialized units like troy weight are used for precious metals.',
   categories: {
     metric: ['milligram', 'gram', 'kilogram', 'metric ton'],
     imperial: ['ounce', 'pound', 'stone', 'long ton'],
@@ -112,4 +113,3 @@ export const weight: CategoryDefinition = {
     slug: 14.593903
   }
 };
-

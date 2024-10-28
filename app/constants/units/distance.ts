@@ -2,6 +2,7 @@ import { CategoryDefinition } from './types';
 
 export const distance: CategoryDefinition = {
   baseUnit: 'meter',
+  description: 'Distance units range from microscopic to astronomical scales. While metric units are used globally, imperial units remain common in some countries, and specialized units exist for maritime and astronomical measurements.',
   categories: {
     metric: ['millimeter', 'centimeter', 'meter', 'kilometer'],
     imperial: ['inch', 'foot', 'yard', 'mile'],
@@ -133,4 +134,3 @@ export const distance: CategoryDefinition = {
     chain: 20.1168
   }
 };
-

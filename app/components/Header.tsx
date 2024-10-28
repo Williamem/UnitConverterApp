@@ -22,6 +22,10 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const router = useRouter();
 
+  // Format the screen name for display
+  const formattedScreenName = screenName === '(tabs)' ? 'Home' : 
+    screenName.replace(/([A-Z])/g, ' $1').trim();
+
   return (
     <SafeAreaView edges={["top"]} className="bg-background-primary shadow-sm">
       <View className="flex-row items-center justify-between bg-background-primary px-4 py-3">
@@ -51,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({
           />
         ) : (
           <Text className="flex-1 mx-3 text-lg font-semibold text-text-primary">
-            {screenName}
+            {formattedScreenName}
           </Text>
         )}
 

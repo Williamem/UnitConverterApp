@@ -20,6 +20,8 @@ export interface UnitInfo {
 
 export interface CategoryDefinition {
   baseUnit: string;
+  description?: string;  // General informative description
+  categoryAlert?: string;  // Important information users need to know
   categories: {
     [key: string]: string[];
   };

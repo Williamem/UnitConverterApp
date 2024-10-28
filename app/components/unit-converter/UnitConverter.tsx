@@ -9,10 +9,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 interface UnitConverterProps {
   unitCategory: UnitCategory;
-  extraInfo?: string;
 }
 
-const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory, extraInfo }) => {
+const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set(['all']));
   const [values, setValues] = useState<Record<string, string>>({});
   const [selectedUnit, setSelectedUnit] = useState<string | null>(null);
@@ -129,11 +128,11 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory, extraInfo }
           </TouchableOpacity>
         </View>
 
-        {extraInfo && showInfo && (
+        {unitData.categoryAlert && showInfo && (
           <View className="mb-4 relative">
             <View className={`bg-background-secondary rounded-lg ${!showFullInfo ? 'max-h-24' : 'pb-12'}`}>
               <Text className="p-4 pr-12 text-text-primary">
-                {extraInfo}
+                {unitData.categoryAlert}
               </Text>
               <View className="absolute bottom-0 left-0 right-0">
                 {!showFullInfo ? (

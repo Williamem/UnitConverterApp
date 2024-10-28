@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, TouchableOpacity, Text } from "react-native";
+import { View, TextInput, TouchableOpacity, Text, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -88,22 +88,34 @@ const Header: React.FC<HeaderProps> = ({
       </View>
       {showInfoModal && unitData && (
         <Modal
-          visible={showInfoModal}
+          animationType="slide"
           transparent={true}
-          animationType="fade"
+          visible={showInfoModal}
           onRequestClose={() => setShowInfoModal(false)}
         >
-          <TouchableOpacity 
-            className="flex-1 bg-black/50 justify-center items-center"
-            activeOpacity={1}
+          <Pressable 
+            className="flex-1 bg-black/50"
             onPress={() => setShowInfoModal(false)}
           >
-            <View className="bg-background-primary m-4 p-4 rounded-lg max-w-[90%]">
-              <Text className="text-text-primary text-base">
+            <Pressable 
+              className="m-4 mt-20 bg-background-primary rounded-xl p-6 shadow-xl"
+              onPress={e => e.stopPropagation()}
+            >
+              <View className="flex-row justify-between items-center mb-4">
+                <Text className="text-xl font-bold">{formattedScreenName}</Text>
+                <TouchableOpacity
+                  onPress={() => setShowInfoModal(false)}
+                  className="p-2 rounded-full active:bg-background-tertiary"
+                >
+                  <Ionicons name="close" size={24} color="#475569" />
+                </TouchableOpacity>
+              </View>
+
+              <Text className="text-text-primary">
                 {unitData.description}
               </Text>
-            </View>
-          </TouchableOpacity>
+            </Pressable>
+          </Pressable>
         </Modal>
       )}
     </SafeAreaView>

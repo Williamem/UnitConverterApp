@@ -7,5 +7,6 @@
 - use info modal for header info link
 
 ## NOW!
-- how: either always visible, app infor on home screen. meybe replace or move settings
+### info on header
+- how: either always visible, app info on home screen. maybe replace or move settings
 - or just on unit category screens, render only that information

@@ -1,3 +1,4 @@
 - favorites
 - my units, "i" opens modal with short explanation and options to add/remove units. Is standard option
 - info about kibibyte https://www.logicmonitor.com/blog/what-the-hell-is-a-kibibyte
+- fix the gradient in extra info box

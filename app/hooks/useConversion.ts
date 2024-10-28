@@ -1,4 +1,10 @@
-import { unitDefinitions } from '../constants/unitDefinitions';
+import { acceleration, distance, weight } from '../constants/units/';
+
+const unitDefinitions = {
+  acceleration,
+  distance,
+  weight
+};
 
 type UnitCategory = keyof typeof unitDefinitions;
 type ConversionFactors<T extends UnitCategory> = typeof unitDefinitions[T]['conversions'];

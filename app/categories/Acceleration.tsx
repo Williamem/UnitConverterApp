@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { Stack } from 'expo-router';
-import { unitDefinitions } from '../constants/unitDefinitions';
+import { acceleration } from '../constants/units/';
 import { useConversion } from '../hooks/useConversion';
 
 const Acceleration: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [values, setValues] = useState<Record<string, string>>({});
 
-  const accelerationUnits = unitDefinitions.acceleration;
-  const allUnits = Object.values(accelerationUnits.categories).flat();
+  const allUnits = Object.values(acceleration.categories).flat();
 
   const { convert } = useConversion();
 
@@ -32,8 +30,8 @@ const Acceleration: React.FC = () => {
           const convertedValue = convert(
             'acceleration',
             numValue,
-            unit as keyof typeof unitDefinitions.acceleration.conversions,
-            otherUnit as keyof typeof unitDefinitions.acceleration.conversions
+            unit as keyof typeof acceleration.conversions,
+            otherUnit as keyof typeof acceleration.conversions
           );
           newValues[otherUnit] = convertedValue.toFixed(4);
         }
@@ -49,7 +47,7 @@ const Acceleration: React.FC = () => {
       <Text className="text-2xl font-bold mb-4">Acceleration Conversion</Text>
       
       <View className="flex-row flex-wrap mb-4">
-        {Object.keys(accelerationUnits.categories).map(category => (
+        {Object.keys(acceleration.categories).map(category => (
           <TouchableOpacity
             key={category}
             className={`mr-2 mb-2 p-2 rounded ${selectedCategory === category ? 'bg-blue-500' : 'bg-gray-200'}`}

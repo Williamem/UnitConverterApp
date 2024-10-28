@@ -9,6 +9,7 @@ const Acceleration: React.FC = () => {
   const [values, setValues] = useState<Record<string, string>>({});
   const [selectedUnit, setSelectedUnit] = useState<string | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set(['all']));
 
   const allUnits = Object.values(acceleration.categories).flat();
 
@@ -45,26 +46,90 @@ const Acceleration: React.FC = () => {
     }
   };
 
+  const getFilteredUnits = () => {
+    if (selectedCategories.has('all')) {
+      return allUnits;
+    }
+    
+    return Object.entries(acceleration.categories)
+      .filter(([category]) => selectedCategories.has(category))
+      .flatMap(([_, units]) => units);
+  };
+
   return (
     <>
       <ScrollView className="p-4">
         <Text className="text-2xl font-bold mb-4">Acceleration Conversion</Text>
         
         <View className="flex-row flex-wrap mb-4">
+          <TouchableOpacity
+            key="all"
+            className={`mr-2 mb-2 p-2 rounded ${
+              selectedCategories.has('all') ? 'bg-blue-500' : 'bg-gray-200'
+            }`}
+            onPress={() => {
+              if (selectedCategories.has('all')) {
+                setSelectedCategories(new Set());
+              } else {
+                setSelectedCategories(new Set(['all']));
+              }
+            }}
+          >
+            <Text className={selectedCategories.has('all') ? 'text-white' : 'text-black'}>
+              All
+            </Text>
+          </TouchableOpacity>
+
           {Object.keys(acceleration.categories).map(category => (
             <TouchableOpacity
               key={category}
-              className={`mr-2 mb-2 p-2 rounded ${selectedCategory === category ? 'bg-blue-500' : 'bg-gray-200'}`}
-              onPress={() => setSelectedCategory(selectedCategory === category ? null : category)}
+              className={`mr-2 mb-2 p-2 rounded ${
+                selectedCategories.has(category) ? 'bg-blue-500' : 'bg-gray-200'
+              }`}
+              onPress={() => {
+                setSelectedCategories(prev => {
+                  const newSelection = new Set(prev);
+                  if (prev.has(category)) {
+                    newSelection.delete(category);
+                  } else {
+                    newSelection.add(category);
+                    newSelection.delete('all'); // Remove 'all' when selecting specific categories
+                  }
+                  return newSelection;
+                });
+              }}
             >
-              <Text className={selectedCategory === category ? 'text-white' : 'text-black'}>
+              <Text className={selectedCategories.has(category) ? 'text-white' : 'text-black'}>
                 {category}
               </Text>
             </TouchableOpacity>
           ))}
+
+          <TouchableOpacity
+            key="myUnits"
+            className={`mr-2 mb-2 p-2 rounded ${
+              selectedCategories.has('myUnits') ? 'bg-blue-500' : 'bg-gray-200'
+            }`}
+            onPress={() => {
+              setSelectedCategories(prev => {
+                const newSelection = new Set(prev);
+                if (prev.has('myUnits')) {
+                  newSelection.delete('myUnits');
+                } else {
+                  newSelection.add('myUnits');
+                  newSelection.delete('all'); // Remove 'all' when selecting My Units
+                }
+                return newSelection;
+              });
+            }}
+          >
+            <Text className={selectedCategories.has('myUnits') ? 'text-white' : 'text-black'}>
+              My Units
+            </Text>
+          </TouchableOpacity>
         </View>
 
-        {allUnits.map(unit => (
+        {getFilteredUnits().map(unit => (
           <View key={unit} className="mb-4 flex-row items-stretch h-12">
             <TouchableOpacity 
               className="min-w-[120px] flex-1 mr-4 flex-row items-center bg-background-secondary rounded-lg px-3 active:bg-background-tertiary"

@@ -3,7 +3,6 @@ import { ScrollView, View, Text, TouchableOpacity, TextInput } from 'react-nativ
 import { Stack } from 'expo-router';
 import { unitDefinitions } from '../constants/unitDefinitions';
 import { useConversion } from '../hooks/useConversion';
-import SearchHeader from '../components/SearchHeader';
 
 const Acceleration: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -46,47 +45,36 @@ const Acceleration: React.FC = () => {
   };
 
   return (
-    <>
-      <Stack.Screen
-        options={{
-          headerSearchHandler: (text) => {
-            // Add acceleration-specific search logic here
-            console.log(`Searching acceleration units for ${text}`);
-          },
-          headerPlaceholder: "Search acceleration units...",
-        }}
-      />
-      <ScrollView className="p-4">
-        <Text className="text-2xl font-bold mb-4">Acceleration Conversion</Text>
-        
-        <View className="flex-row flex-wrap mb-4">
-          {Object.keys(accelerationUnits.categories).map(category => (
-            <TouchableOpacity
-              key={category}
-              className={`mr-2 mb-2 p-2 rounded ${selectedCategory === category ? 'bg-blue-500' : 'bg-gray-200'}`}
-              onPress={() => setSelectedCategory(selectedCategory === category ? null : category)}
-            >
-              <Text className={selectedCategory === category ? 'text-white' : 'text-black'}>
-                {category}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-
-        {allUnits.map(unit => (
-          <View key={unit} className="mb-4">
-            <Text className="font-bold">{unit}</Text>
-            <TextInput
-              className="border border-gray-300 rounded p-2"
-              value={values[unit]}
-              onChangeText={(text) => handleInputChange(unit, text)}
-              keyboardType="numeric"
-              placeholder="Enter value"
-            />
-          </View>
+    <ScrollView className="p-4">
+      <Text className="text-2xl font-bold mb-4">Acceleration Conversion</Text>
+      
+      <View className="flex-row flex-wrap mb-4">
+        {Object.keys(accelerationUnits.categories).map(category => (
+          <TouchableOpacity
+            key={category}
+            className={`mr-2 mb-2 p-2 rounded ${selectedCategory === category ? 'bg-blue-500' : 'bg-gray-200'}`}
+            onPress={() => setSelectedCategory(selectedCategory === category ? null : category)}
+          >
+            <Text className={selectedCategory === category ? 'text-white' : 'text-black'}>
+              {category}
+            </Text>
+          </TouchableOpacity>
         ))}
-      </ScrollView>
-    </>
+      </View>
+
+      {allUnits.map(unit => (
+        <View key={unit} className="mb-4">
+          <Text className="font-bold">{unit}</Text>
+          <TextInput
+            className="border border-gray-300 rounded p-2"
+            value={values[unit]}
+            onChangeText={(text) => handleInputChange(unit, text)}
+            keyboardType="numeric"
+            placeholder="Enter value"
+          />
+        </View>
+      ))}
+    </ScrollView>
   );
 };
 

@@ -1,13 +1,5 @@
-import { acceleration, distance, weight } from '../constants/units/';
-
-const unitDefinitions = {
-  acceleration,
-  distance,
-  weight
-};
-
-type UnitCategory = keyof typeof unitDefinitions;
-type ConversionFactors<T extends UnitCategory> = typeof unitDefinitions[T]['conversions'];
+import { unitDefinitions } from '../constants/units/types';
+import type { UnitCategory, ConversionFactors } from '../constants/units/types';
 
 export const useConversion = () => {
   const convert = <T extends UnitCategory>(

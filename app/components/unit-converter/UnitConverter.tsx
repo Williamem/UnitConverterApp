@@ -5,16 +5,20 @@ import { useConversion } from '../../hooks/useConversion';
 import type { CategoryDefinition, UnitCategory } from '../../constants/units/types';
 import * as unitDefinitions from '../../constants/units/';
 import { getUniqueUnits } from './utils';
+import { LinearGradient } from 'expo-linear-gradient';
 
 interface UnitConverterProps {
   unitCategory: UnitCategory;
+  extraInfo?: string;
 }
 
-const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
+const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory, extraInfo }) => {
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set(['all']));
   const [values, setValues] = useState<Record<string, string>>({});
   const [selectedUnit, setSelectedUnit] = useState<string | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [showFullInfo, setShowFullInfo] = useState(false);
+  const [showInfo, setShowInfo] = useState(true);
 
   const unitData = unitDefinitions[unitCategory];
   const displayUnits = useMemo(() => 
@@ -124,6 +128,51 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
             </Text>
           </TouchableOpacity>
         </View>
+
+        {extraInfo && showInfo && (
+          <View className="mb-4 relative">
+            <View className={`bg-background-secondary rounded-lg ${!showFullInfo ? 'max-h-24' : 'pb-12'}`}>
+              <Text className="p-4 pr-12 text-text-primary">
+                {extraInfo}
+              </Text>
+              <View className="absolute bottom-0 left-0 right-0">
+                {!showFullInfo ? (
+                  <View className="h-12">
+                    <LinearGradient
+                      colors={['rgba(243,244,246,0)', 'rgb(243,244,246)']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 0, y: .5 }}
+                      style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}
+                    />
+                    <TouchableOpacity
+                      onPress={() => setShowFullInfo(true)}
+                      className="absolute bottom-2 left-2"
+                    >
+                      <Text className="text-blue-500 text-sm">
+                        Show more
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => setShowFullInfo(false)}
+                    className="absolute bottom-2 left-2"
+                  >
+                    <Text className="text-blue-500 text-sm">
+                      Show less
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            </View>
+            <TouchableOpacity
+              onPress={() => setShowInfo(false)}
+              className="absolute top-2 right-2 p-2"
+            >
+              <Ionicons name="close" size={20} color="#475569" />
+            </TouchableOpacity>
+          </View>
+        )}
 
         {displayUnits.map(unit => (
           <View key={unit} className="mb-4 flex-row items-stretch h-12">

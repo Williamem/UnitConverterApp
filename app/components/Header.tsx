@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from 'expo-router';
+import { Modal } from "react-native";
+import { unitDefinitions } from '../constants/units/types';
 
 type HeaderProps = {
   screenName: string;
@@ -21,6 +23,11 @@ const Header: React.FC<HeaderProps> = ({
   showSearch = false,
 }) => {
   const router = useRouter();
+  const [showInfoModal, setShowInfoModal] = useState(false);
+  // Format camelCase for unit check
+  const camelCaseScreenName = screenName.charAt(0).toLowerCase() + screenName.slice(1);
+  const isUnitScreen = Object.keys(unitDefinitions).includes(camelCaseScreenName);
+  const unitData = isUnitScreen ? unitDefinitions[camelCaseScreenName as keyof typeof unitDefinitions] : null;
 
   // Format the screen name for display
   const formattedScreenName = screenName === '(tabs)' ? 'Home' : 
@@ -54,9 +61,19 @@ const Header: React.FC<HeaderProps> = ({
             onChangeText={(text) => onSearch?.(text)}
           />
         ) : (
-          <Text className="flex-1 mx-3 text-lg font-semibold text-text-primary">
-            {formattedScreenName}
-          </Text>
+          <View className="flex-1 mx-3 flex-row items-center">
+            <Text className="text-lg font-semibold text-text-primary">
+              {formattedScreenName}
+            </Text>
+            {isUnitScreen && unitData?.description && (
+              <TouchableOpacity
+                onPress={() => setShowInfoModal(true)}
+                className="ml-2"
+              >
+                <Ionicons name="information-circle-outline" size={20} color="#475569" />
+              </TouchableOpacity>
+            )}
+          </View>
         )}
 
         <Link href="/settings" asChild>
@@ -69,6 +86,26 @@ const Header: React.FC<HeaderProps> = ({
           </TouchableOpacity>
         </Link>
       </View>
+      {showInfoModal && unitData && (
+        <Modal
+          visible={showInfoModal}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => setShowInfoModal(false)}
+        >
+          <TouchableOpacity 
+            className="flex-1 bg-black/50 justify-center items-center"
+            activeOpacity={1}
+            onPress={() => setShowInfoModal(false)}
+          >
+            <View className="bg-background-primary m-4 p-4 rounded-lg max-w-[90%]">
+              <Text className="text-text-primary text-base">
+                {unitData.description}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Modal>
+      )}
     </SafeAreaView>
   );
 };

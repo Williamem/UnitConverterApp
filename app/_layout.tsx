@@ -3,6 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Stack } from 'expo-router';
 import CustomHeader from './components/CustomHeader';
 import './types'; // Import the types extension
+import Header from './components/Header';
 
 export default function RootLayout() {
   return (
@@ -10,14 +11,13 @@ export default function RootLayout() {
       <Stack
         screenOptions={({ route }) => ({
           header: ({ navigation }) => (
-            <CustomHeader
+            <Header
               screenName={route.name}
               onSearch={(text: string) => 
                 console.log(`Searching for ${text} in ${route.name}`)
               }
               placeholder={`Search in ${route.name}...`}
               showBackButton={navigation.canGoBack()}
-              showSettingsButton={true}
             />
           ),
         })}

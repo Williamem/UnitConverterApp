@@ -24,12 +24,18 @@ export default function CategoryIcon({ name, icon }: CategoryIconProps) {
     .replace(/^./, (str) => str.toUpperCase());
 
   return (
-    <TouchableOpacity style={{ width: 96, height: 96 }} onPress={handlePress}>
-      <View className="flex flex-col items-center bg-background-tertiary border border-border-light rounded-xl">
-        <View className={`w-20 h-20 justify-center items-center`}>
+    <TouchableOpacity 
+      style={{ 
+        width: 100,
+        aspectRatio: 1  // Keeps it square
+      }} 
+      onPress={handlePress}
+    >
+      <View className="flex-1 flex flex-col items-center justify-center bg-background-tertiary border border-border-light rounded-xl p-2">
+        <View className="flex-1 justify-center items-center">
           <Text className="text-text-primary text-2xl font-bold">{icon}</Text>
         </View>
-        <Text className="text-center mb-1">{displayText}</Text>
+        <Text className="text-center text-sm" numberOfLines={2}>{displayText}</Text>
       </View>
     </TouchableOpacity>
   );

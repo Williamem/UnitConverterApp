@@ -7,9 +7,9 @@ export default function HomeScreen() {
   return (
     <>
       <Stack.Screen options={{ headerShown: true }} />
-      <ScrollView className="flex-1 bg-white p-4">
-        <Text className="text-2xl font-bold mb-4">Unit Converter</Text>
-        <View className="flex-row flex-wrap justify-around">
+      <ScrollView className="flex-1 bg-white">
+        <Text className="text-2xl font-bold mb-4 px-4 pt-4">Unit Converter</Text>
+        <View className="flex-row flex-wrap gap-6 p-4 justify-center">
           <CategoryIcon name="Acceleration" icon="🚀" />
           <CategoryIcon name="Angle" icon="📐" />
           <CategoryIcon name="Area" icon="⬜" />

@@ -6,11 +6,12 @@
 - more options for units to show (large / medium / small)
 - use info modal for header info link
 - cooking units should be in volume
-- maybe remove everything from app\categories???
 
-## NOW!
-### info on header
-- how: either always visible, app info on home screen. maybe replace or move settings
-- or just on unit category screens, render only that information
-#### Header modal
-- show info on all the units?
+## styling
+- home page grid
+- icons
+- header title and info icon, align. 
+
+## Logic
+- radiation calculations
+- weight calculations

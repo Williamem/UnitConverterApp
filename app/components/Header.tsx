@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, TextInput, TouchableOpacity, Text, Pressable } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, usePathname, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from 'expo-router';
@@ -23,11 +23,16 @@ const Header: React.FC<HeaderProps> = ({
   showSearch = false,
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [showInfoModal, setShowInfoModal] = useState(false);
-  // Format camelCase for unit check
-  const camelCaseScreenName = screenName.charAt(0).toLowerCase() + screenName.slice(1);
-  const isUnitScreen = Object.keys(unitDefinitions).includes(camelCaseScreenName);
-  const unitData = isUnitScreen ? unitDefinitions[camelCaseScreenName as keyof typeof unitDefinitions] : null;
+
+  // Check if we're on a converter screen and get the unit data
+  const isConverterScreen = pathname.startsWith('/converter');
+  
+  // Convert the screenName to camelCase for unit lookup
+  const camelCaseCategory = screenName.charAt(0).toLowerCase() + screenName.slice(1);
+  const unitData = unitDefinitions[camelCaseCategory as keyof typeof unitDefinitions];
+  const shouldShowInfo = isConverterScreen && unitData;
 
   // Format the screen name for display
   const formattedScreenName = screenName === '(tabs)' ? 'Home' : 
@@ -65,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({
             <Text className="text-lg font-semibold text-text-primary">
               {formattedScreenName}
             </Text>
-            {isUnitScreen && unitData?.description && (
+            {shouldShowInfo && (
               <TouchableOpacity
                 onPress={() => setShowInfoModal(true)}
                 className="ml-2"
@@ -86,6 +91,7 @@ const Header: React.FC<HeaderProps> = ({
           </TouchableOpacity>
         </Link>
       </View>
+
       {showInfoModal && unitData && (
         <Modal
           animationType="slide"
@@ -111,9 +117,17 @@ const Header: React.FC<HeaderProps> = ({
                 </TouchableOpacity>
               </View>
 
-              <Text className="text-text-primary">
+              <Text className="text-text-primary mb-4">
                 {unitData.description}
               </Text>
+
+              {unitData.categoryAlert && (
+                <View className="bg-yellow-50 p-4 rounded-lg">
+                  <Text className="text-yellow-800">
+                    ⚠️ {unitData.categoryAlert}
+                  </Text>
+                </View>
+              )}
             </Pressable>
           </Pressable>
         </Modal>

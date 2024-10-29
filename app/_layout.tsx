@@ -12,16 +12,27 @@ export default function RootLayout() {
           header: ({ navigation }) => {
             const isHomeScreen = route.name === '(tabs)' || route.name === 'index';
             
-            // Clean up the route name by removing the directory path
-            const screenName = route.name.includes('/') 
-              ? route.name.split('/').pop() 
-              : route.name === '(tabs)' 
-                ? 'Home' 
-                : route.name;
+            // Get the screen name and handle the converter route specially
+            let screenName = route.name;
+            if (route.name === 'converter') {
+              // Add type safety for params
+              const params = route.params as { category: string } | undefined;
+              if (params?.category) {
+                // Convert first letter to uppercase for display
+                screenName = params.category.charAt(0).toUpperCase() + params.category.slice(1);
+              }
+            } else {
+              // Clean up other route names
+              screenName = route.name.includes('/') 
+                ? route.name.split('/').pop() || route.name // Provide fallback if pop returns undefined
+                : route.name === '(tabs)' 
+                  ? 'Home' 
+                  : route.name;
+            }
             
             return (
               <Header
-                screenName={screenName || 'Home'}
+                screenName={screenName}
                 onSearch={isHomeScreen ? (text: string) => 
                   console.log(`Searching for ${text} in ${route.name}`)
                   : undefined}

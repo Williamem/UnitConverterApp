@@ -10,9 +10,9 @@ type CategoryIconProps = {
 export default function CategoryIcon({ name, icon }: CategoryIconProps) {
   return (
     <Link href={`../categories/${name}`} asChild>
-      <TouchableOpacity>
-        <View className={`w-20 h-20 rounded-full justify-center items-center bg-blue-500`}>
-          <Text className="text-white text-2xl font-bold">{icon}</Text>
+      <TouchableOpacity style={{ width: 96 }}>
+        <View className={`w-20 h-20 rounded-full justify-center items-center bg-background-tertiary border border-border-light`}>
+          <Text className="text-text-primary text-2xl font-bold">{icon}</Text>
         </View>
         <Text className="text-center mt-2">{name}</Text>
       </TouchableOpacity>

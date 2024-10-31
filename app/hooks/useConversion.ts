@@ -1,6 +1,13 @@
 import { unitDefinitions } from '../constants/units/types';
 import type { UnitCategory, ConversionFactors } from '../constants/units/types';
 
+type ConversionFunction = (value: number) => number;
+
+interface CustomConversions {
+  toBase: ConversionFunction;
+  fromBase: ConversionFunction;
+}
+
 export const useConversion = () => {
   const convert = <T extends UnitCategory>(
     category: T,
@@ -9,17 +16,26 @@ export const useConversion = () => {
     toUnit: keyof ConversionFactors<T>
   ): number => {
     const categoryData = unitDefinitions[category];
-    const conversions = categoryData.conversions as { [key: string]: number };
+    const conversions = categoryData.conversions as { 
+      [key: string]: number | CustomConversions 
+    };
     
-    const fromFactor = conversions[fromUnit as string];
-    const toFactor = conversions[toUnit as string];
+    const fromConversion = conversions[fromUnit as string];
+    const toConversion = conversions[toUnit as string];
     
-    if (typeof fromFactor !== 'number' || typeof toFactor !== 'number') {
-      throw new Error(`Invalid conversion factors for ${category}: ${String(fromUnit)} to ${String(toUnit)}`);
+    // Handle custom conversion functions
+    if (typeof fromConversion === 'object' && typeof toConversion === 'object') {
+      // Convert to base unit first, then to target unit
+      const baseValue = fromConversion.toBase(value);
+      return toConversion.fromBase(baseValue);
     }
     
-    // Convert to base unit, then to target unit
-    return (value * fromFactor) / toFactor;
+    // Handle simple multiplication/division conversions
+    if (typeof fromConversion === 'number' && typeof toConversion === 'number') {
+      return (value * fromConversion) / toConversion;
+    }
+    
+    throw new Error(`Invalid conversion factors for ${category}: ${String(fromUnit)} to ${String(toUnit)}`);
   };
 
   return { convert };

@@ -23,7 +23,10 @@ export default function HomeScreen() {
           <CategoryIcon name="FuelEconomy" icon="⛽" />
           <CategoryIcon name="Power" icon="💪" />
           <CategoryIcon name="Pressure" icon="🌡️" />
-          <CategoryIcon name="Radiation" icon="☢️" />
+          <CategoryIcon name="RadiationAbsorbedDose" icon="☢️" />
+          <CategoryIcon name="RadiationEquivalentDose" icon="☢️" />
+          <CategoryIcon name="RadiationExposure" icon="☢️" />
+          <CategoryIcon name="Radioactivity" icon="☢️" />
           <CategoryIcon name="Temperature" icon="🌡️" />
           <CategoryIcon name="Time" icon="⏰" />
           <CategoryIcon name="Torque" icon="🔧" />

@@ -43,10 +43,25 @@ export const temperature: CategoryDefinition = {
     }
   },
   conversions: {
-    kelvin: 1,
-    celsius: 1,  // Special case: needs formula (K = °C + 273.15)
-    fahrenheit: 1,  // Special case: needs formula (K = (°F + 459.67) × 5/9)
-    rankine: 5/9,  // K = °R × 5/9
-    réaumur: 1.25  // K = °Ré × 1.25 + 273.15
+    celsius: {
+      toBase: (c: number) => c + 273.15,
+      fromBase: (k: number) => k - 273.15
+    },
+    fahrenheit: {
+      toBase: (f: number) => (f + 459.67) * (5/9),
+      fromBase: (k: number) => k * (9/5) - 459.67
+    },
+    kelvin: {
+      toBase: (k: number) => k,
+      fromBase: (k: number) => k
+    },
+    rankine: {
+      toBase: (r: number) => r * (5/9),  // Rankine to Kelvin
+      fromBase: (k: number) => k * (9/5)  // Kelvin to Rankine
+    },
+    réaumur: {
+      toBase: (re: number) => (re * (5/4)) + 273.15,  // Réaumur to Kelvin
+      fromBase: (k: number) => (k - 273.15) * (4/5)   // Kelvin to Réaumur
+    }
   }
 };

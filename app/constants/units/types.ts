@@ -8,7 +8,10 @@ import {
   temperature,
   velocity,
   energy,
-  radiation,
+  radiationExposure,
+  radiationAbsorbedDose,
+  radiationEquivalentDose,
+  radioactivity,
   pressure,
   power,
   fuelEconomy,
@@ -30,7 +33,10 @@ export const unitDefinitions = {
   temperature,
   velocity,
   energy,
-  radiation,
+  radiationExposure,
+  radiationAbsorbedDose,
+  radiationEquivalentDose,
+  radioactivity,
   pressure,
   power,
   fuelEconomy,
@@ -53,10 +59,17 @@ export interface UnitInfo {
   asteriskReason?: string;
 }
 
+type ConversionFunction = (value: number) => number;
+
+interface CustomConversions {
+  toBase: ConversionFunction;
+  fromBase: ConversionFunction;
+}
+
 export interface CategoryDefinition {
   baseUnit: string;
-  description?: string;  // General informative description
-  categoryAlert?: string;  // Important information users need to know
+  description: string;
+  categoryAlert?: string;
   categories: {
     [key: string]: string[];
   };
@@ -64,8 +77,11 @@ export interface CategoryDefinition {
     [key: string]: UnitInfo;
   };
   conversions: {
-    [key: string]: number;
+    [key: string]: number | CustomConversions;
   };
 }
 
-export type ConversionFactors<T extends UnitCategory> = typeof unitDefinitions[T]['conversions'];
+export type ConversionFactors<T extends UnitCategory> = {
+  [K in keyof typeof unitDefinitions[T]['conversions']]: 
+    typeof unitDefinitions[T]['conversions'][K] extends number ? number : CustomConversions;
+};

@@ -36,9 +36,21 @@ export const fuelEconomy: CategoryDefinition = {
     }
   },
   conversions: {
-    'kilometers per liter': 1,
-    'liters per 100 kilometers': 100,  // Special conversion needed
-    'miles per gallon': 0.425144,
-    'miles per Imperial gallon': 0.354006
+    'kilometers per liter': {
+      toBase: (kpl: number) => kpl,
+      fromBase: (kpl: number) => kpl
+    },
+    'liters per 100 kilometers': {
+      toBase: (l100km: number) => 100 / l100km,
+      fromBase: (kpl: number) => 100 / kpl
+    },
+    'miles per gallon': {
+      toBase: (mpg: number) => mpg * 0.425144,
+      fromBase: (kpl: number) => kpl / 0.425144
+    },
+    'miles per Imperial gallon': {
+      toBase: (mpg: number) => mpg * 0.354006,
+      fromBase: (kpl: number) => kpl / 0.354006
+    }
   }
 };

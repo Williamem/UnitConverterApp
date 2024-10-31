@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, TextInput, TouchableOpacity, Text, Pressable } from "react-native";
+import { View, TouchableOpacity, Text, Pressable } from "react-native";
 import { useRouter, usePathname, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from 'expo-router';
 import { Modal } from "react-native";
 import { unitDefinitions } from '../constants/units/types';
+import SearchBar from './search/SearchBar';
 
 type HeaderProps = {
   screenName: string;
@@ -59,11 +60,9 @@ const Header: React.FC<HeaderProps> = ({
         </View>
         
         {showSearch ? (
-          <TextInput
-            className="flex-1 mx-3 bg-background-primary px-4 py-2 rounded-full border border-border-light focus:border-ui-primary"
+          <SearchBar
             placeholder={placeholder}
-            placeholderTextColor="#94a3b8"
-            onChangeText={(text) => onSearch?.(text)}
+            onClose={() => onSearch?.('')}
           />
         ) : (
           <View className="flex-1 mx-3 flex-row items-center">

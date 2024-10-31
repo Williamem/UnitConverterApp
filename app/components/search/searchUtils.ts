@@ -4,6 +4,9 @@ export interface SearchResult {
   category: string;
   match: string;
   type: 'category' | 'unit' | 'abbreviation';
+  unitName: string;
+  abbreviations: string[];
+  searchTerm: string;
 }
 
 const normalizeString = (str: string): string => {
@@ -22,48 +25,60 @@ const normalizeString = (str: string): string => {
     });
 };
 
+// Helper function to properly capitalize each word in a string
+const toTitleCase = (str: string): string => {
+  return str
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
+
 export const useSearch = (searchTerm: string): SearchResult[] => {
   if (!searchTerm) return [];
 
   const normalizedSearchTerm = normalizeString(searchTerm);
   const results: SearchResult[] = [];
 
-  // Search through all categories
   Object.entries(unitDefinitions).forEach(([category, definition]) => {
     const formattedCategory = category.replace(/([A-Z])/g, ' $1').trim();
 
     // Check category name
     if (normalizeString(formattedCategory).includes(normalizedSearchTerm)) {
+      const titleCaseCategory = toTitleCase(formattedCategory);
       results.push({
-        category: formattedCategory,
-        match: formattedCategory,
-        type: 'category'
+        category: titleCaseCategory,
+        match: titleCaseCategory,
+        type: 'category',
+        unitName: titleCaseCategory,
+        abbreviations: [],
+        searchTerm: normalizedSearchTerm
       });
     }
 
     // Check units and their properties
-    Object.entries(definition.units).forEach(([unitName, unitInfo]) => {
+    Object.entries(definition.units).forEach(([unitKey, unitInfo]) => {
+      let shouldAdd = false;
+      
       // Check unit names
-      unitInfo.names.forEach(name => {
-        if (normalizeString(name).includes(normalizedSearchTerm)) {
-          results.push({
-            category: formattedCategory,
-            match: name,
-            type: 'unit'
-          });
-        }
-      });
+      const nameMatch = unitInfo.names.some(name => 
+        normalizeString(name).includes(normalizedSearchTerm)
+      );
 
       // Check abbreviations
-      unitInfo.abbreviations.forEach(abbr => {
-        if (normalizeString(abbr).includes(normalizedSearchTerm)) {
-          results.push({
-            category: formattedCategory,
-            match: abbr,
-            type: 'abbreviation'
-          });
-        }
-      });
+      const abbrMatch = unitInfo.abbreviations.some(abbr => 
+        normalizeString(abbr).includes(normalizedSearchTerm)
+      );
+
+      if (nameMatch || abbrMatch) {
+        results.push({
+          category: formattedCategory,
+          match: unitInfo.names[0], // Primary name
+          type: nameMatch ? 'unit' : 'abbreviation',
+          unitName: unitInfo.names[0],
+          abbreviations: unitInfo.abbreviations,
+          searchTerm: normalizedSearchTerm
+        });
+      }
     });
   });
 

@@ -8,7 +8,6 @@
 - calendar icon looks a little off in date time input
 
 ## Logic
-- search functionality, search category, unit or abbreviation
 - set my units
 - edit my units (pill?)
 - when no units selaected, select all
@@ -18,6 +17,7 @@
 - info about kibibyte https://www.logicmonitor.com/blog/what-the-hell-is-a-kibibyte
 - (add one for dates (different calendars))
 - proofread conversions
+- remove abbreviations for comparative units
 
 ## copy
 - better explanations and warnings

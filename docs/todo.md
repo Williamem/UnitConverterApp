@@ -15,7 +15,6 @@
 
 ## Data
 - cooking units are worng, should be caught in proofread, maybe add different for eu/us
-- add categories (large, medium, small) where appropriate
 - info about kibibyte https://www.logicmonitor.com/blog/what-the-hell-is-a-kibibyte
 - (add one for dates (different calendars))
 - proofread conversions

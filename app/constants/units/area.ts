@@ -4,9 +4,13 @@ export const area: CategoryDefinition = {
   baseUnit: 'square meter',
   description: 'Area units measure two-dimensional space. While metric units are standard in science, various specialized units are used for land measurement in different regions.',
   categories: {
+    small: ['square millimeter', 'square centimeter', 'square inch', 'square foot'],
+    medium: ['square meter', 'square yard', 'rood', 'square chain', 'tennis court', 'basketball court'],
+    large: ['hectare', 'acre', 'square kilometer', 'square mile', 'soccer field', 'american football field'],
     metric: ['square millimeter', 'square centimeter', 'square meter', 'square kilometer', 'hectare'],
     imperial: ['square inch', 'square foot', 'square yard', 'square mile', 'acre'],
-    obsolete: ['rood', 'square chain']
+    obsolete: ['rood', 'square chain'],
+    comparative: ['tennis court', 'basketball court', 'soccer field', 'american football field']
   },
   units: {
     // Metric
@@ -77,6 +81,34 @@ export const area: CategoryDefinition = {
       description: 'Area of a square with 1-chain sides',
       needsAsterisk: true,
       asteriskReason: 'Historical unit, mainly used in land surveying',
+    },
+    'tennis court': {
+      names: ['tennis court'],
+      abbreviations: ['tc'],
+      description: 'Area of a standard singles tennis court',
+      needsAsterisk: true,
+      asteriskReason: 'Based on standard singles court dimensions (23.77m × 8.23m)',
+    },
+    'basketball court': {
+      names: ['basketball court'],
+      abbreviations: ['bc'],
+      description: 'Area of an NBA basketball court',
+      needsAsterisk: true,
+      asteriskReason: 'Based on NBA regulation court size (94ft × 50ft)',
+    },
+    'soccer field': {
+      names: ['soccer field', 'football pitch'],
+      abbreviations: ['pitch'],
+      description: 'Area of a standard soccer/football field',
+      needsAsterisk: true,
+      asteriskReason: 'Based on FIFA recommended dimensions (105m × 68m)',
+    },
+    'american football field': {
+      names: ['american football field'],
+      abbreviations: ['aff'],
+      description: 'Area of an American football field including end zones',
+      needsAsterisk: true,
+      asteriskReason: 'Based on NFL regulation size (120yd × 53.3yd)',
     }
   },
   conversions: {
@@ -91,6 +123,10 @@ export const area: CategoryDefinition = {
     'square mile': 2589988.110336,
     acre: 4046.8564224,
     rood: 1011.7141056,
-    'square chain': 404.68564224
+    'square chain': 404.68564224,
+    'tennis court': 195.63,
+    'basketball court': 436.32,
+    'soccer field': 7140,
+    'american football field': 5351
   }
 };

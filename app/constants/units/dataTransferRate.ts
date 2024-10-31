@@ -4,6 +4,9 @@ export const dataTransferRate: CategoryDefinition = {
   baseUnit: 'bit per second',
   description: 'Data transfer rate measures the speed of data transmission. While bits per second is the standard unit, larger prefixes are common for modern networks and storage.',
   categories: {
+    small: ['bit per second', 'byte per second', 'kilobit per second', 'kilobyte per second'],
+    medium: ['megabit per second', 'megabyte per second', 'gigabit per second', 'gigabyte per second'],
+    large: ['terabit per second', 'terabyte per second'],
     binary: ['bit per second', 'kilobit per second', 'megabit per second', 'gigabit per second', 'terabit per second'],
     bytes: ['byte per second', 'kilobyte per second', 'megabyte per second', 'gigabyte per second', 'terabyte per second']
   },

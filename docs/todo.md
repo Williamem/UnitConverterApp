@@ -8,8 +8,6 @@
 - calendar icon looks a little off in date time input
 
 ## Logic
-- time, months and years vary in length
-- check date and time exists
 - search functionality, search category, unit or abbreviation
 - set my units
 - edit my units (pill?)

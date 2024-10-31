@@ -4,9 +4,12 @@ export const energy: CategoryDefinition = {
   baseUnit: 'joule',
   description: 'Energy units measure work or heat. While joules are the SI standard, calories are common in food energy, and BTUs in heating/cooling.',
   categories: {
+    small: ['electronvolt', 'erg', 'calorie', 'joule'],
+    medium: ['kilojoule', 'kilocalorie', 'watt hour', 'British Thermal Unit', 'foot pound'],
+    large: ['megajoule', 'kilowatt hour', 'megawatt hour', 'gigawatt hour'],
     metric: ['joule', 'kilojoule', 'megajoule'],
     caloric: ['calorie', 'kilocalorie'],
-    electrical: ['watt hour', 'kilowatt hour'],
+    electrical: ['watt hour', 'kilowatt hour', 'megawatt hour', 'gigawatt hour'],
     scientific: ['electronvolt'],
     imperial: ['British Thermal Unit', 'foot pound'],
     obsolete: ['erg']
@@ -74,6 +77,16 @@ export const energy: CategoryDefinition = {
       description: 'CGS system unit of energy',
       needsAsterisk: true,
       asteriskReason: 'Obsolete unit, replaced by joule in modern usage',
+    },
+    'megawatt hour': {
+      names: ['megawatt hour', 'megawatt-hour'],
+      abbreviations: ['MWh'],
+      description: 'Common unit for large-scale electrical energy measurement',
+    },
+    'gigawatt hour': {
+      names: ['gigawatt hour', 'gigawatt-hour'],
+      abbreviations: ['GWh'],
+      description: 'Used for measuring very large amounts of electrical energy',
     }
   },
   conversions: {
@@ -87,6 +100,8 @@ export const energy: CategoryDefinition = {
     electronvolt: 1.602176634e-19,
     'British Thermal Unit': 1055.06,
     'foot pound': 1.355818,
-    erg: 1e-7
+    erg: 1e-7,
+    'megawatt hour': 3600000000,
+    'gigawatt hour': 3600000000000
   }
 };

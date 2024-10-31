@@ -5,6 +5,9 @@ export const dataStorage: CategoryDefinition = {
   categoryAlert: 'Be careful! Data storage units can mean different things in different contexts. For example, a "gigabyte" on your hard drive (1000³ bytes) is different from a "gibibyte" in your RAM (1024³ bytes).',
   description: 'Digital data storage units come in two standards: the decimal (SI) system using powers of 1000, and the binary system using powers of 1024.',
   categories: {
+    small: ['bit', 'byte', 'kilobyte', 'kibibyte'],
+    medium: ['megabyte', 'mebibyte', 'gigabyte', 'gibibyte'],
+    large: ['terabyte', 'tebibyte', 'petabyte', 'pebibyte', 'exabyte', 'exbibyte'],
     binary: ['bit', 'byte', 'kibibyte', 'mebibyte', 'gibibyte', 'tebibyte', 'pebibyte', 'exbibyte'],
     decimal: ['byte', 'kilobyte', 'megabyte', 'gigabyte', 'terabyte', 'petabyte', 'exabyte']
   },

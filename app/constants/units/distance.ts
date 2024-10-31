@@ -4,11 +4,16 @@ export const distance: CategoryDefinition = {
   baseUnit: 'meter',
   description: 'Distance units range from microscopic to astronomical scales. While metric units are used globally, imperial units remain common in some countries, and specialized units exist for maritime and astronomical measurements.',
   categories: {
+    small: ['millimeter', 'centimeter', 'inch', 'foot'],
+    medium: ['meter', 'yard', 'fathom', 'rod', 'chain', 'american football field'],
+    large: ['kilometer', 'mile', 'nautical mile', 'furlong', 'league', 'empire state building', 'mount everest', 'burj khalifa'],
+    xlarge: ['light-year', 'astronomical unit', 'parsec'],
     metric: ['millimeter', 'centimeter', 'meter', 'kilometer'],
     imperial: ['inch', 'foot', 'yard', 'mile'],
     nautical: ['nautical mile'],
     astronomical: ['light-year', 'astronomical unit', 'parsec'],
-    obsolete: ['furlong', 'league', 'fathom', 'rod', 'chain']
+    obsolete: ['furlong', 'league', 'fathom', 'rod', 'chain'],
+    comparative: ['american football field', 'empire state building', 'mount everest', 'burj khalifa']
   },
   units: {
     // Metric
@@ -112,6 +117,34 @@ export const distance: CategoryDefinition = {
       description: 'Equal to 66 feet or 22 yards',
       needsAsterisk: true,
       asteriskReason: 'Historical unit, mainly used in land surveying',
+    },
+    'american football field': {
+      names: ['american football field'],
+      abbreviations: ['field'],
+      description: 'Length of an American american football field',
+      needsAsterisk: true,
+      asteriskReason: 'Based on American american football field length (100 yards)',
+    },
+    'empire state building': {
+      names: ['empire state building'],
+      abbreviations: ['esb'],
+      description: 'Height of the Empire State Building to tip',
+      needsAsterisk: true,
+      asteriskReason: 'Measured to the tip of the spire',
+    },
+    'mount everest': {
+      names: ['mount everest', 'everest'],
+      abbreviations: ['everest'],
+      description: 'Height of Mount Everest above sea level',
+      needsAsterisk: true,
+      asteriskReason: 'Height varies slightly due to geological activity',
+    },
+    'burj khalifa': {
+      names: ['burj khalifa'],
+      abbreviations: ['burj'],
+      description: 'Height of the Burj Khalifa, the world\'s tallest building',
+      needsAsterisk: true,
+      asteriskReason: 'Measured to the architectural top',
     }
   },
   conversions: {
@@ -131,6 +164,10 @@ export const distance: CategoryDefinition = {
     league: 4828.032,
     fathom: 1.8288,
     rod: 5.0292,
-    chain: 20.1168
+    chain: 20.1168,
+    'american football field': 91.44,
+    'empire state building': 381,
+    'mount everest': 8848,
+    'burj khalifa': 828
   }
 };

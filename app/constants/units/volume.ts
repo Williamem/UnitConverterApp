@@ -4,12 +4,17 @@ export const volume: CategoryDefinition = {
   baseUnit: 'cubic meter',
   description: 'Volume units measure three-dimensional space. Different systems exist for liquid and dry measurements, with variations between US and Imperial standards.',
   categories: {
-    metric: ['milliliter', 'centiliter', 'liter', 'cubic centimeter', 'cubic meter'],
+    small: ['milliliter', 'centiliter', 'cubic centimeter', 'fluid ounce', 'US fluid ounce', 'cup', 'gill', 'fluid dram'],
+    medium: ['liter', 'pint', 'quart', 'US pint', 'US quart', 'dry pint', 'dry quart'],
+    large: ['cubic meter', 'gallon', 'US gallon', 'barrel', 'hogshead', 'peck', 'bushel'],
+    xlarge: ['olympic swimming pool', 'cubic kilometer', 'cubic mile'],
+    metric: ['milliliter', 'centiliter', 'liter', 'cubic centimeter', 'cubic meter', 'cubic kilometer'],
     imperial: ['fluid ounce', 'pint', 'quart', 'gallon'],
     us: ['US fluid ounce', 'US pint', 'US quart', 'US gallon'],
     cooking: ['cup', 'tablespoon', 'teaspoon'],
     dry: ['dry pint', 'dry quart', 'peck', 'bushel'],
-    obsolete: ['gill', 'barrel', 'hogshead', 'fluid dram']
+    obsolete: ['gill', 'barrel', 'hogshead', 'fluid dram'],
+    comparative: ['olympic swimming pool', 'great pyramid', 'empire state building']
   },
   units: {
     // Metric
@@ -167,6 +172,37 @@ export const volume: CategoryDefinition = {
       description: 'Historical small volume measure',
       needsAsterisk: true,
       asteriskReason: 'Obsolete unit, historically used in pharmacy',
+    },
+    'olympic swimming pool': {
+      names: ['olympic swimming pool'],
+      abbreviations: ['osp'],
+      description: '2500 cubic meters (50m × 25m × 2m)',
+      needsAsterisk: true,
+      asteriskReason: 'Based on minimum Olympic pool dimensions',
+    },
+    'cubic kilometer': {
+      names: ['cubic kilometer', 'cubic kilometre'],
+      abbreviations: ['km³', 'km^3'],
+      description: 'One billion cubic meters',
+    },
+    'cubic mile': {
+      names: ['cubic mile'],
+      abbreviations: ['mi³', 'mi^3'],
+      description: 'Imperial unit for very large volumes',
+    },
+    'great pyramid': {
+      names: ['great pyramid', 'great pyramid of giza'],
+      abbreviations: ['pyramid'],
+      description: 'Volume of the Great Pyramid of Giza',
+      needsAsterisk: true,
+      asteriskReason: 'Approximate volume based on external dimensions',
+    },
+    'empire state building': {
+      names: ['empire state building'],
+      abbreviations: ['esb'],
+      description: 'Volume of the Empire State Building',
+      needsAsterisk: true,
+      asteriskReason: 'Approximate volume based on main building structure',
     }
   },
   conversions: {
@@ -193,6 +229,11 @@ export const volume: CategoryDefinition = {
     gill: 0.0001420653,
     barrel: 0.158987295,
     hogshead: 0.238480942,
-    'fluid dram': 0.0000036967
+    'fluid dram': 0.0000036967,
+    'olympic swimming pool': 2500,
+    'cubic kilometer': 1000000000,
+    'cubic mile': 4168181825.44058,
+    'great pyramid': 2600000,
+    'empire state building': 1050000
   }
 };

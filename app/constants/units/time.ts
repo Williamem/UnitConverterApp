@@ -7,8 +7,10 @@ export const time: CategoryDefinition = {
   categoryAlert: 'Due to varying lengths of months (28-31 days) and years (365-366 days), conversions involving these units require a reference date.',
   categories: {
     small: ['nanosecond', 'microsecond', 'millisecond', 'second'],
+    medium: ['minute', 'hour', 'day', 'week'],
+    large: ['month', 'year', 'decade', 'century'],
+    xlarge: ['millennium'],
     common: ['minute', 'hour', 'day', 'week', 'month', 'year'],
-    large: ['decade', 'century', 'millennium'],
     obsolete: ['fortnight', 'score']
   },
   units: {

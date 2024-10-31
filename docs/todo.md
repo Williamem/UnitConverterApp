@@ -5,6 +5,7 @@
 - icons
 - header title and info icon, align. 
 - fix the gradient in extra info box (categoryAlert)
+- calendar icon looks a little off in date time input
 
 ## Logic
 - time, months and years vary in length

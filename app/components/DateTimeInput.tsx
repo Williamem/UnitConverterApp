@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Platform, Modal } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { CalendarIcon } from 'react-native-heroicons/outline';
 
 const formatDateForLocale = (date: Date, locale: string) => {
   return new Intl.DateTimeFormat(locale, {
@@ -28,6 +30,7 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({ date, onDateChange
   const [timeInput, setTimeInput] = useState(() => formatTimeForLocale(date, locale));
   const [dateError, setDateError] = useState('');
   const [timeError, setTimeError] = useState('');
+  const [showDatePicker, setShowDatePicker] = useState(false);
   
   const resetToNow = () => {
     const now = new Date();
@@ -138,18 +141,39 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({ date, onDateChange
     return is24Hour ? 'HH:mm' : 'hh:mm AM/PM';
   };
 
+  const handleDatePickerChange = (event: any, selectedDate?: Date) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      const newDate = new Date(date);
+      newDate.setFullYear(selectedDate.getFullYear());
+      newDate.setMonth(selectedDate.getMonth());
+      newDate.setDate(selectedDate.getDate());
+      onDateChange(newDate);
+      setDateInput(formatDateForLocale(newDate, locale));
+      setDateError('');
+    }
+  };
+
   return (
     <View className="px-4 pt-3 pb-4 bg-background-secondary rounded-lg mb-4">
       <View className="flex-row items-center gap-2">
         <Text className="text-text-primary">From:</Text>
         <View className="flex-1 relative">
-          <TextInput
-            className={`border ${dateError ? 'border-red-500' : 'border-border-primary'} rounded-md px-3 py-2 bg-background-primary text-text-primary h-10`}
-            value={dateInput}
-            onChangeText={handleDateChange}
-            placeholder={getDatePlaceholder()}
-            placeholderTextColor="#666"
-          />
+          <View className="flex-row">
+            <TextInput
+              className={`flex-1 border ${dateError ? 'border-red-500' : 'border-border-primary'} rounded-md px-3 py-2 bg-background-primary text-text-primary h-10`}
+              value={dateInput}
+              onChangeText={handleDateChange}
+              placeholder={getDatePlaceholder()}
+              placeholderTextColor="#666"
+            />
+            <TouchableOpacity 
+              className="absolute right-2 top-2"
+              onPress={() => setShowDatePicker(true)}
+            >
+              <CalendarIcon color="#666" size={24} />
+            </TouchableOpacity>
+          </View>
           {dateError && (
             <Text className="absolute -bottom-4 left-0 text-red-500 text-xs">
               {dateError}
@@ -177,6 +201,15 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({ date, onDateChange
           <Text className="text-white font-medium">Now</Text>
         </TouchableOpacity>
       </View>
+
+      {showDatePicker && (
+        <DateTimePicker
+          value={date}
+          mode="date"
+          display="default"
+          onChange={handleDatePickerChange}
+        />
+      )}
     </View>
   );
 };

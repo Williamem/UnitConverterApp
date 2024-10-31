@@ -31,11 +31,11 @@ export default function CategoryIcon({ name, icon }: CategoryIconProps) {
       }} 
       onPress={handlePress}
     >
-      <View className="flex-1 flex flex-col items-center justify-center bg-background-tertiary border border-border-light rounded-xl p-2">
-        <View className="flex-1 justify-center items-center">
+      <View className="flex-1 flex flex-col items-center justify-center bg-background-secondary border border-border-light/20 rounded-xl p-2 shadow-lg">
+        <View className="flex-1 justify-center items-center w-full">
           <Text className="text-text-primary text-2xl font-bold">{icon}</Text>
         </View>
-        <Text className="text-center text-sm" numberOfLines={2}>{displayText}</Text>
+        <Text className="text-center text-text-secondary text-sm" numberOfLines={2}>{displayText}</Text>
       </View>
     </TouchableOpacity>
   );

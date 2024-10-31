@@ -11,9 +11,9 @@ module.exports = {
         colors: {
           // Main background colors
           background: {
-            primary: '#ffffff',     // Pure white for main backgrounds
-            secondary: '#f8fafc',   // Slight off-white (slate-50) for secondary backgrounds
-            tertiary: '#f1f5f9',    // Slightly darker (slate-100) for cards/sections
+            primary: '#f1f5f9',    // Current tertiary (slate-100)
+            secondary: '#e2e8f0',  // Slightly darker (slate-200)
+            tertiary: '#cbd5e1',   // Even darker (slate-300)
           },
           // Text colors
           text: {

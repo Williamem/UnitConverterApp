@@ -59,7 +59,7 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
 
   return (
     <>
-      <ScrollView className="p-4">
+      <ScrollView className="p-4 bg-background-primary">
         <View className="flex-row flex-wrap mb-4">
           <TouchableOpacity
             key="all"

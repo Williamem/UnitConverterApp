@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <SafeAreaView edges={["top"]} className="bg-background-primary shadow-sm">
-      <View className="flex-row items-center justify-between bg-background-primary px-4 py-3">
+      <View className="flex-row items-center justify-between bg-background-secondary px-4 py-3">
         <View className="w-10 h-10 justify-center">
           {showBackButton ? (
             <TouchableOpacity 
@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({
         
         {showSearch ? (
           <TextInput
-            className="flex-1 mx-3 bg-background-secondary px-4 py-2 rounded-full border border-border-light focus:border-ui-primary"
+            className="flex-1 mx-3 bg-background-primary px-4 py-2 rounded-full border border-border-light focus:border-ui-primary"
             placeholder={placeholder}
             placeholderTextColor="#94a3b8"
             onChangeText={(text) => onSearch?.(text)}

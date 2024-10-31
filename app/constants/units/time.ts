@@ -4,6 +4,7 @@ export const time: CategoryDefinition = {
   //TODO: add special logic for month and year with starting time now?
   baseUnit: 'second',
   description: 'Time units range from tiny fractions of a second to millennia. While most time units are standardized globally, some historical units remain in specific contexts.',
+  categoryAlert: 'Due to varying lengths of months (28-31 days) and years (365-366 days), conversions involving these units require a reference date.',
   categories: {
     small: ['nanosecond', 'microsecond', 'millisecond', 'second'],
     common: ['minute', 'hour', 'day', 'week', 'month', 'year'],
@@ -100,20 +101,84 @@ export const time: CategoryDefinition = {
     }
   },
   conversions: {
-    second: 1,
-    nanosecond: 1e-9,
-    microsecond: 1e-6,
-    millisecond: 0.001,
-    minute: 60,
-    hour: 3600,
-    day: 86400,
-    week: 604800,
-    month: 2629746,  // Average month (365.2425 days / 12)
-    year: 31556952,  // Average year (365.2425 days)
-    decade: 315569520,
-    century: 3155695200,
-    millennium: 31556952000,
-    fortnight: 1209600,
-    score: 631139040
+    second: {
+      toBase: (s: number) => s,
+      fromBase: (s: number) => s
+    },
+    nanosecond: {
+      toBase: (ns: number) => ns * 1e-9,
+      fromBase: (s: number) => s * 1e9
+    },
+    microsecond: {
+      toBase: (μs: number) => μs * 1e-6,
+      fromBase: (s: number) => s * 1e6
+    },
+    millisecond: {
+      toBase: (ms: number) => ms * 0.001,
+      fromBase: (s: number) => s * 1000
+    },
+    minute: {
+      toBase: (min: number) => min * 60,
+      fromBase: (s: number) => s / 60
+    },
+    hour: {
+      toBase: (h: number) => h * 3600,
+      fromBase: (s: number) => s / 3600
+    },
+    day: {
+      toBase: (d: number) => d * 86400,
+      fromBase: (s: number) => s / 86400
+    },
+    week: {
+      toBase: (w: number) => w * 604800,
+      fromBase: (s: number) => s / 604800
+    },
+    month: {
+      toBase: (m: number, date = new Date()) => {
+        const startDate = new Date(date);
+        const endDate = new Date(date);
+        endDate.setMonth(endDate.getMonth() + m);
+        return (endDate.getTime() - startDate.getTime()) / 1000;
+      },
+      fromBase: (s: number, date = new Date()) => {
+        const startDate = new Date(date);
+        const endDate = new Date(startDate.getTime() + s * 1000);
+        return endDate.getMonth() - startDate.getMonth() + 
+          (endDate.getFullYear() - startDate.getFullYear()) * 12;
+      }
+    },
+    year: {
+      toBase: (y: number, date = new Date()) => {
+        const startDate = new Date(date);
+        const endDate = new Date(date);
+        endDate.setFullYear(endDate.getFullYear() + y);
+        return (endDate.getTime() - startDate.getTime()) / 1000;
+      },
+      fromBase: (s: number, date = new Date()) => {
+        const startDate = new Date(date);
+        const endDate = new Date(startDate.getTime() + s * 1000);
+        return endDate.getFullYear() - startDate.getFullYear();
+      }
+    },
+    decade: {
+      toBase: (d: number) => d * 315576000,
+      fromBase: (s: number) => s / 315576000
+    },
+    century: {
+      toBase: (c: number) => c * 3155760000,
+      fromBase: (s: number) => s / 3155760000
+    },
+    millennium: {
+      toBase: (m: number) => m * 31557600000,
+      fromBase: (s: number) => s / 31557600000
+    },
+    fortnight: {
+      toBase: (f: number) => f * 1209600,
+      fromBase: (s: number) => s / 1209600
+    },
+    score: {
+      toBase: (sc: number) => sc * 631152000,
+      fromBase: (s: number) => s / 631152000
+    }
   }
 };

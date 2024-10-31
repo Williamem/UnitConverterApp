@@ -20,6 +20,7 @@ export { density } from './density';
 export { torque } from './torque';
 export { angle } from './angle';
 export { dataTransferRate } from './dataTransferRate';
+export { time } from './time';
 // We'll add more exports as we create them
 
 

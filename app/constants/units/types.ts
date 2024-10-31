@@ -21,6 +21,7 @@ import {
   torque,
   angle,
   dataTransferRate,
+  time,
 } from './';
 
 export const unitDefinitions = {
@@ -46,6 +47,7 @@ export const unitDefinitions = {
   torque,
   angle,
   dataTransferRate,
+  time,
   // Add more as we implement them
 } as const;
 

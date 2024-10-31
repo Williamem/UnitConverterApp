@@ -6,6 +6,7 @@ import type { CategoryDefinition, UnitCategory } from '../../constants/units/typ
 import * as unitDefinitions from '../../constants/units/';
 import { getUniqueUnits } from './utils';
 import { LinearGradient } from 'expo-linear-gradient';
+import { DateTimeInput } from '../DateTimeInput';
 
 interface UnitConverterProps {
   unitCategory: UnitCategory;
@@ -18,6 +19,7 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [showFullInfo, setShowFullInfo] = useState(false);
   const [showInfo, setShowInfo] = useState(true);
+  const [referenceDate, setReferenceDate] = useState(new Date());
 
   const unitData = unitDefinitions[unitCategory];
   const displayUnits = useMemo(() => 
@@ -171,6 +173,13 @@ const UnitConverter: React.FC<UnitConverterProps> = ({ unitCategory }) => {
               <Ionicons name="close" size={20} color="#475569" />
             </TouchableOpacity>
           </View>
+        )}
+        
+        {unitCategory === 'time' && (
+          <DateTimeInput 
+            date={referenceDate}
+            onDateChange={setReferenceDate}
+          />
         )}
 
         {displayUnits.map(unit => (

@@ -7,18 +7,17 @@
 - fix the gradient in extra info box (categoryAlert)
 
 ## Logic
-- radiation calculations
 - time, months and years vary in length
 - search functionality, search category, unit or abbreviation
 - set my units
 - edit my units (pill?)
-- add one for dates (different calendars)
+- when no units selaected, select all
 
 ## Data
-- add cooking units to volume
+- cooking units are worng, should be caught in proofread, maybe add different for eu/us
 - add categories (large, medium, small) where appropriate
 - info about kibibyte https://www.logicmonitor.com/blog/what-the-hell-is-a-kibibyte
-- data transfer rate uses kibibyte?
+- (add one for dates (different calendars))
 - proofread conversions
 
 ## copy

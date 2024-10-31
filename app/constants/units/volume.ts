@@ -109,6 +109,64 @@ export const volume: CategoryDefinition = {
       description: 'Cooking measurement',
       needsAsterisk: true,
       asteriskReason: 'Can vary between US and metric systems',
+    },
+    // Dry Measure
+    'dry pint': {
+      names: ['dry pint', 'US dry pint'],
+      abbreviations: ['dry pt'],
+      description: 'US dry measure unit',
+      needsAsterisk: true,
+      asteriskReason: 'US dry measure differs from liquid measure',
+    },
+    'dry quart': {
+      names: ['dry quart', 'US dry quart'],
+      abbreviations: ['dry qt'],
+      description: 'US dry measure unit',
+      needsAsterisk: true,
+      asteriskReason: 'US dry measure differs from liquid measure',
+    },
+    peck: {
+      names: ['peck'],
+      abbreviations: ['pk'],
+      description: 'US dry measure unit',
+      needsAsterisk: true,
+      asteriskReason: 'Primarily used for agricultural products',
+    },
+    bushel: {
+      names: ['bushel'],
+      abbreviations: ['bu'],
+      description: 'US dry measure unit',
+      needsAsterisk: true,
+      asteriskReason: 'Primarily used for agricultural products',
+    },
+    // Obsolete
+    gill: {
+      names: ['gill'],
+      abbreviations: ['gi'],
+      description: 'Quarter of a pint',
+      needsAsterisk: true,
+      asteriskReason: 'Obsolete unit, rarely used today',
+    },
+    barrel: {
+      names: ['barrel'],
+      abbreviations: ['bbl'],
+      description: 'Historical volume measure',
+      needsAsterisk: true,
+      asteriskReason: 'Multiple definitions exist depending on context',
+    },
+    hogshead: {
+      names: ['hogshead'],
+      abbreviations: ['hhd'],
+      description: 'Historical large volume measure',
+      needsAsterisk: true,
+      asteriskReason: 'Obsolete unit, historically used for wine and beer',
+    },
+    'fluid dram': {
+      names: ['fluid dram', 'fluid drachm'],
+      abbreviations: ['fl dr'],
+      description: 'Historical small volume measure',
+      needsAsterisk: true,
+      asteriskReason: 'Obsolete unit, historically used in pharmacy',
     }
   },
   conversions: {
@@ -127,6 +185,14 @@ export const volume: CategoryDefinition = {
     'US gallon': 0.00378541,
     cup: 0.000236588,
     tablespoon: 0.0000147868,
-    teaspoon: 0.00000492892
+    teaspoon: 0.00000492892,
+    'dry pint': 0.000550610,
+    'dry quart': 0.001101221,
+    peck: 0.00880977,
+    bushel: 0.035239070,
+    gill: 0.0001420653,
+    barrel: 0.158987295,
+    hogshead: 0.238480942,
+    'fluid dram': 0.0000036967
   }
 };

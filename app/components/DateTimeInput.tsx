@@ -42,38 +42,42 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({ date, onDateChange
   };
 
   const handleDateChange = (text: string) => {
-    // If user is trying to clear the input, allow it
     if (text === '') {
       setDateInput('');
       return;
     }
 
-    // Remove any non-numeric characters from input
-    const numbers = text.replace(/\D/g, '');
+    // Allow dashes only in correct positions (after year and month)
+    let formattedText = text;
     
-    // Keep track of cursor position relative to dashes
-    let formattedText = '';
-    
-    // Format the numbers with dashes
-    if (numbers.length <= 4) {
-      formattedText = numbers;
-    } else if (numbers.length <= 6) {
-      formattedText = `${numbers.slice(0, 4)}-${numbers.slice(4)}`;
-    } else {
-      formattedText = `${numbers.slice(0, 4)}-${numbers.slice(4, 6)}-${numbers.slice(6, 8)}`;
+    // Remove any dashes that aren't in the correct position
+    formattedText = formattedText.replace(/-/g, (match, offset) => {
+      return (offset === 4 || offset === 7) ? '-' : '';
+    });
+
+    // Remove any non-numeric characters except properly positioned dashes
+    formattedText = formattedText.replace(/[^\d-]/g, '');
+
+    // Add dashes if numbers are typed and no dash exists
+    if (formattedText.length > 4 && formattedText.charAt(4) !== '-') {
+      formattedText = formattedText.slice(0, 4) + '-' + formattedText.slice(4);
     }
+    if (formattedText.length > 7 && formattedText.charAt(7) !== '-') {
+      formattedText = formattedText.slice(0, 7) + '-' + formattedText.slice(7);
+    }
+
+    // Ensure we don't exceed max length
+    formattedText = formattedText.slice(0, 10);
     
     setDateInput(formattedText);
 
     // Only try to parse if we have a complete date
+    const numbers = formattedText.replace(/-/g, '');
     if (numbers.length === 8) {
-      const year = numbers.slice(0, 4);
-      const month = numbers.slice(4, 6);
-      const day = numbers.slice(6, 8);
+      const [year, month, day] = formattedText.split('-');
       
       try {
         const newDate = new Date(date);
-        // Validate each part individually
         if (parseInt(year) >= 1000 && 
             parseInt(month) >= 1 && parseInt(month) <= 12 && 
             parseInt(day) >= 1 && parseInt(day) <= 31) {
@@ -81,7 +85,6 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({ date, onDateChange
           newDate.setMonth(parseInt(month) - 1);
           newDate.setDate(parseInt(day));
           
-          // Check if the date is valid (handles cases like Feb 31)
           if (!isNaN(newDate.getTime()) && 
               newDate.getFullYear() === parseInt(year) && 
               newDate.getMonth() === parseInt(month) - 1 && 
@@ -101,18 +104,34 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({ date, onDateChange
   };
 
   const handleTimeChange = (text: string) => {
-    // Remove any non-numeric characters
-    const numbers = text.replace(/\D/g, '');
-    
-    // Format with colon
-    let formattedText = numbers;
-    if (numbers.length > 2) {
-      formattedText = `${numbers.slice(0, 2)}:${numbers.slice(2, 4)}`;
+    if (text === '') {
+      setTimeInput('');
+      return;
     }
+
+    // Allow colon only in correct position (between hours and minutes)
+    let formattedText = text;
+    
+    // Remove any colons that aren't in the correct position
+    formattedText = formattedText.replace(/:/g, (match, offset) => {
+      return offset === 2 ? ':' : '';
+    });
+
+    // Remove any non-numeric characters except properly positioned colons
+    formattedText = formattedText.replace(/[^\d:]/g, '');
+
+    // Add colons if numbers are typed and no colon exists
+    if (formattedText.length > 2 && formattedText.charAt(2) !== ':') {
+      formattedText = formattedText.slice(0, 2) + ':' + formattedText.slice(2);
+    }
+
+    // Ensure we don't exceed max length
+    formattedText = formattedText.slice(0, 5);
     
     setTimeInput(formattedText);
 
     // Only try to parse if we have complete time
+    const numbers = formattedText.replace(/:/g, '');
     if (numbers.length === 4) {
       const hours = parseInt(numbers.slice(0, 2));
       const minutes = parseInt(numbers.slice(2, 4));

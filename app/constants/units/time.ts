@@ -1,7 +1,6 @@
 import { CategoryDefinition } from './types';
 
 export const time: CategoryDefinition = {
-  //TODO: add special logic for month and year with starting time now?
   baseUnit: 'second',
   description: 'Time units range from tiny fractions of a second to millennia. While most time units are standardized globally, some historical units remain in specific contexts.',
   categoryAlert: 'Due to varying lengths of months (28-31 days) and years (365-366 days), conversions involving these units require a reference date.',
@@ -59,16 +58,12 @@ export const time: CategoryDefinition = {
     month: {
       names: ['month'],
       abbreviations: ['mo'],
-      description: 'Approximately 30 days',
-      needsAsterisk: true,
-      asteriskReason: 'Varies between 28 and 31 days depending on the calendar month',
+      description: 'Calendar month, varying between 28 and 31 days depending on the month',
     },
     year: {
       names: ['year'],
       abbreviations: ['yr', 'y'],
-      description: 'Approximately 365.25 days',
-      needsAsterisk: true,
-      asteriskReason: 'Can be 365 or 366 days depending on leap years',
+      description: 'Calendar year of 365 days, or 366 days in leap years',
     },
     // Large units
     decade: {
@@ -90,9 +85,7 @@ export const time: CategoryDefinition = {
     fortnight: {
       names: ['fortnight'],
       abbreviations: ['fn'],
-      description: '14 days',
-      needsAsterisk: true,
-      asteriskReason: 'Historical unit, still used in some English-speaking regions',
+      description: '14 days, historical unit still used in some English-speaking regions',
     },
     score: {
       names: ['score'],
@@ -163,16 +156,16 @@ export const time: CategoryDefinition = {
       }
     },
     decade: {
-      toBase: (d: number) => d * 315576000,
-      fromBase: (s: number) => s / 315576000
+      toBase: (d: number) => d * 315569520,
+      fromBase: (s: number) => s / 315569520
     },
     century: {
-      toBase: (c: number) => c * 3155760000,
-      fromBase: (s: number) => s / 3155760000
+      toBase: (c: number) => c * 3155695200,
+      fromBase: (s: number) => s / 3155695200
     },
     millennium: {
-      toBase: (m: number) => m * 31557600000,
-      fromBase: (s: number) => s / 31557600000
+      toBase: (m: number) => m * 31556952000,
+      fromBase: (s: number) => s / 31556952000
     },
     fortnight: {
       toBase: (f: number) => f * 1209600,

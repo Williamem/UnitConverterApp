@@ -1,7 +1,6 @@
 import { CategoryDefinition } from './types';
 
 export const frequency: CategoryDefinition = {
-    //TODO: measuring the same thing?
   baseUnit: 'hertz',
   description: 'Frequency measures the number of occurrences per unit time. While hertz is the standard unit, specialized prefixes are common in electronics, and RPM is used for rotating machinery.',
   categories: {
@@ -12,7 +11,7 @@ export const frequency: CategoryDefinition = {
     hertz: {
       names: ['hertz'],
       abbreviations: ['Hz'],
-      description: 'One cycle per second',
+      description: 'One cycle per second, the SI unit of frequency',
     },
     kilohertz: {
       names: ['kilohertz'],
@@ -37,9 +36,7 @@ export const frequency: CategoryDefinition = {
     'revolution per minute': {
       names: ['revolution per minute', 'revolutions per minute'],
       abbreviations: ['rpm', 'RPM'],
-      description: 'Rotational speed measurement',
-      needsAsterisk: true,
-      asteriskReason: 'Not an SI unit, but commonly used in mechanical applications',
+      description: 'Rotational speed measurement, commonly used for motors, engines, and other rotating machinery',
     }
   },
   conversions: {
@@ -48,6 +45,6 @@ export const frequency: CategoryDefinition = {
     megahertz: 1000000,
     gigahertz: 1000000000,
     terahertz: 1000000000000,
-    'revolution per minute': 1/60  // Convert RPM to Hz
+    'revolution per minute': 0.016666666666666666,
   }
 };

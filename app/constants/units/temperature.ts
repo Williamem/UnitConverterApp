@@ -1,10 +1,8 @@
 import { CategoryDefinition } from './types';
 
 export const temperature: CategoryDefinition = {
-    // TODO: these conversions don't work because they need a special formula
   baseUnit: 'kelvin',
   description: 'Temperature units measure thermal energy. While Celsius is used globally, Fahrenheit remains common in the US, and Kelvin is the scientific standard.',
-  categoryAlert: 'Temperature conversions are not simple multiplications - they involve different formulas for each conversion.',
   categories: {
     scientific: ['kelvin'],
     metric: ['celsius'],
@@ -15,7 +13,7 @@ export const temperature: CategoryDefinition = {
     kelvin: {
       names: ['kelvin'],
       abbreviations: ['K'],
-      description: 'The SI base unit of temperature, starting from absolute zero',
+      description: 'The SI base unit of temperature, starting from absolute zero (-273.15°C)',
     },
     celsius: {
       names: ['celsius', 'centigrade'],
@@ -30,16 +28,12 @@ export const temperature: CategoryDefinition = {
     rankine: {
       names: ['rankine'],
       abbreviations: ['°R', 'R'],
-      description: 'Absolute temperature scale using Fahrenheit degrees',
-      needsAsterisk: true,
-      asteriskReason: 'Primarily used in engineering calculations, rarely in general use',
+      description: 'Absolute temperature scale using Fahrenheit degrees, primarily used in engineering calculations',
     },
     réaumur: {
       names: ['réaumur', 'reaumur'],
       abbreviations: ['°Ré', '°Re'],
-      description: 'Historical temperature scale once used in Europe',
-      needsAsterisk: true,
-      asteriskReason: 'Obsolete scale, no longer in common use',
+      description: 'Historical temperature scale once used in Europe, no longer in common use',
     }
   },
   conversions: {

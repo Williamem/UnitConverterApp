@@ -28,31 +28,27 @@ export const pressure: CategoryDefinition = {
     bar: {
       names: ['bar'],
       abbreviations: ['bar'],
-      description: 'Metric unit close to one atmosphere',
+      description: 'Metric unit equal to 100,000 pascals, close to one atmosphere',
     },
     atmosphere: {
       names: ['atmosphere', 'standard atmosphere'],
       abbreviations: ['atm'],
-      description: 'Average pressure at sea level',
+      description: 'Standard pressure at sea level (101,325 Pa)',
     },
     'technical atmosphere': {
       names: ['technical atmosphere'],
       abbreviations: ['at'],
-      description: 'Defined as exactly 1 kgf/cm²',
-      needsAsterisk: true,
-      asteriskReason: 'Obsolete unit, still used in some European countries',
+      description: 'Defined as exactly 1 kgf/cm², still used in some European countries',
     },
     torr: {
       names: ['torr'],
       abbreviations: ['Torr'],
-      description: 'Approximately 1 mmHg',
-      needsAsterisk: true,
-      asteriskReason: 'Named after Evangelista Torricelli, mainly used in vacuum technology',
+      description: 'Equal to 1/760 of a standard atmosphere, mainly used in vacuum technology',
     },
     'millimeter of mercury': {
       names: ['millimeter of mercury', 'millimetre of mercury'],
       abbreviations: ['mmHg'],
-      description: 'Common unit in medical blood pressure measurements',
+      description: 'Common unit in medical blood pressure measurements, equal to one torr',
     },
     'pound per square inch': {
       names: ['pound per square inch', 'pounds per square inch'],
@@ -72,9 +68,9 @@ export const pressure: CategoryDefinition = {
     bar: 100000,
     atmosphere: 101325,
     'technical atmosphere': 98066.5,
-    torr: 133.322,
-    'millimeter of mercury': 133.322,
-    'pound per square inch': 6894.76,
-    'inch of mercury': 3386.39
+    torr: 133.32236842105263,
+    'millimeter of mercury': 133.32236842105263,
+    'pound per square inch': 6894.757293168361,
+    'inch of mercury': 3386.388640341555
   }
 };

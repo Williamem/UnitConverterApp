@@ -8,7 +8,8 @@ export const area: CategoryDefinition = {
     medium: ['square meter', 'square yard', 'rood', 'square chain', 'tennis court', 'basketball court'],
     large: ['hectare', 'acre', 'square kilometer', 'square mile', 'soccer field', 'american football field'],
     metric: ['square millimeter', 'square centimeter', 'square meter', 'square kilometer', 'hectare'],
-    imperial: ['square inch', 'square foot', 'square yard', 'square mile', 'acre'],
+    imperial: ['square inch', 'square foot', 'square yard', 'square mile'],
+    "us survey": ['square survey mile', 'acre'],
     obsolete: ['rood', 'square chain'],
     comparative: ['tennis court', 'basketball court', 'soccer field', 'american football field']
   },
@@ -56,16 +57,23 @@ export const area: CategoryDefinition = {
       description: 'Area of a square with 1-yard sides',
     },
     'square mile': {
-      names: ['square mile'],
+      names: ['square mile', 'square statute mile'],
       abbreviations: ['mi²', 'sq mi'],
-      description: 'Area of a square with 1-mile sides',
+      description: 'Area of a square with 1 statute mile sides',
+    },
+    'square survey mile': {
+      names: ['square survey mile'],
+      abbreviations: ['sq survey mi'],
+      description: 'US land surveying unit, slightly larger than a square statute mile',
+      needsAsterisk: true,
+      asteriskReason: 'Used exclusively in US land surveying and legal descriptions',
     },
     acre: {
       names: ['acre'],
       abbreviations: ['ac'],
-      description: 'Traditional unit of land area',
+      description: 'Traditional unit of land area, equal to 43,560 square feet',
       needsAsterisk: true,
-      asteriskReason: 'Size varies slightly in different countries',
+      asteriskReason: 'International acre and US survey acre differ slightly',
     },
     // Obsolete
     rood: {
@@ -78,9 +86,9 @@ export const area: CategoryDefinition = {
     'square chain': {
       names: ['square chain'],
       abbreviations: ['sq ch'],
-      description: 'Area of a square with 1-chain sides',
+      description: 'Historical surveying unit equal to 1/10 acre',
       needsAsterisk: true,
-      asteriskReason: 'Historical unit, mainly used in land surveying',
+      asteriskReason: 'Historical unit, mainly used in land surveying and property descriptions',
     },
     'tennis court': {
       names: ['tennis court'],
@@ -118,15 +126,16 @@ export const area: CategoryDefinition = {
     'square kilometer': 1000000,
     hectare: 10000,
     'square inch': 0.00064516,
-    'square foot': 0.092903,
-    'square yard': 0.836127,
+    'square foot': 0.09290304,
+    'square yard': 0.83612736,
     'square mile': 2589988.110336,
+    'square survey mile': 2589998.470305,
     acre: 4046.8564224,
     rood: 1011.7141056,
     'square chain': 404.68564224,
-    'tennis court': 195.63,
+    'tennis court': 195.6321,
     'basketball court': 436.32,
     'soccer field': 7140,
-    'american football field': 5351
+    'american football field': 5351.215
   }
 };

@@ -67,9 +67,7 @@ export const weight: CategoryDefinition = {
     'troy ounce': {
       names: ['troy ounce'],
       abbreviations: ['oz t', 'tr oz'],
-      description: 'Used for precious metals',
-      needsAsterisk: true,
-      asteriskReason: 'Different from regular ounce, only used for precious metals',
+      description: 'Used for precious metals. Different from regular ounce.',
     },
     'troy pound': {
       names: ['troy pound'],
@@ -82,9 +80,7 @@ export const weight: CategoryDefinition = {
     grain: {
       names: ['grain'],
       abbreviations: ['gr'],
-      description: 'The smallest unit in the imperial weight system',
-      needsAsterisk: true,
-      asteriskReason: 'Historical unit, mainly used in specialized fields like bullet weights',
+      description: 'The smallest unit in the imperial weight system. Historical unit, mainly used in specialized fields like bullet weights.',
     },
     dram: {
       names: ['dram'],
@@ -103,7 +99,7 @@ export const weight: CategoryDefinition = {
     'jumbo jet': {
       names: ['jumbo jet', 'Boeing 747'],
       abbreviations: ['747'],
-      description: 'Empty weight of a typical Boeing 747',
+      description: 'Empty weight of a typical Boeing 747-400 (varies by model)',
       needsAsterisk: true,
       asteriskReason: 'Based on empty weight of Boeing 747-400, varies by model',
     },
@@ -150,7 +146,7 @@ export const weight: CategoryDefinition = {
     'troy pound': 0.3732417216,
     grain: 0.00006479891,
     dram: 0.0017718451953125,
-    slug: 14.593903,
+    slug: 14.593902937206364,
     'jumbo jet': 180000,
     'blue whale': 140000,
     'african elephant': 6000,

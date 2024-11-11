@@ -33,7 +33,7 @@ export const energy: CategoryDefinition = {
     calorie: {
       names: ['calorie', 'small calorie'],
       abbreviations: ['cal'],
-      description: 'Energy to raise 1g of water by 1°C',
+      description: 'Energy to raise 1g of water by 1°C (thermochemical definition)',
       needsAsterisk: true,
       asteriskReason: 'Often confused with kilocalorie (food calorie)',
     },
@@ -57,14 +57,12 @@ export const energy: CategoryDefinition = {
     electronvolt: {
       names: ['electronvolt', 'electron volt'],
       abbreviations: ['eV'],
-      description: 'Energy gained by electron moved by one volt',
+      description: 'Energy gained by electron moved by one volt, commonly used in atomic and nuclear physics',
     },
     'British Thermal Unit': {
       names: ['British Thermal Unit', 'BTU'],
       abbreviations: ['BTU', 'Btu'],
-      description: 'Traditional unit for heating and cooling',
-      needsAsterisk: true,
-      asteriskReason: 'Multiple definitions exist with slightly different values',
+      description: 'Traditional unit for heating and cooling, defined as 1055.05585262 joules (ISO standard BTU)',
     },
     'foot pound': {
       names: ['foot pound', 'foot-pound'],
@@ -93,15 +91,15 @@ export const energy: CategoryDefinition = {
     joule: 1,
     kilojoule: 1000,
     megajoule: 1000000,
-    calorie: 4.184,
-    kilocalorie: 4184,
+    calorie: 4.1868,
+    kilocalorie: 4186.8,
     'watt hour': 3600,
     'kilowatt hour': 3600000,
     electronvolt: 1.602176634e-19,
-    'British Thermal Unit': 1055.06,
-    'foot pound': 1.355818,
+    'British Thermal Unit': 1055.05585262,
+    'foot pound': 1.3558179483314004,
     erg: 1e-7,
-    'megawatt hour': 3600000000,
-    'gigawatt hour': 3600000000000
+    'megawatt hour': 3.6e9,
+    'gigawatt hour': 3.6e12
   }
 };

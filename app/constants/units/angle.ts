@@ -13,22 +13,22 @@ export const angle: CategoryDefinition = {
     radian: {
       names: ['radian'],
       abbreviations: ['rad'],
-      description: 'The SI unit for angles, based on the radius of a circle',
+      description: 'The SI unit for angles, defined by the arc length equal to the radius',
     },
     degree: {
       names: ['degree'],
       abbreviations: ['°', 'deg'],
-      description: '1/360 of a full rotation',
+      description: '1/360 of a full rotation, the most commonly used angle unit',
     },
     arcminute: {
       names: ['arcminute', 'minute of arc'],
       abbreviations: ['′', 'arcmin'],
-      description: '1/60 of a degree',
+      description: '1/60 of a degree, used in astronomy and navigation',
     },
     arcsecond: {
       names: ['arcsecond', 'second of arc'],
       abbreviations: ['″', 'arcsec'],
-      description: '1/60 of an arcminute',
+      description: '1/60 of an arcminute, used in astronomy and navigation',
     },
     gradian: {
       names: ['gradian', 'gon'],
@@ -45,10 +45,10 @@ export const angle: CategoryDefinition = {
   },
   conversions: {
     radian: 1,
-    degree: 0.0174533,  // π/180
-    arcminute: 0.000290888,  // π/10800
-    arcsecond: 4.84814e-6,   // π/648000
-    gradian: 0.015708,  // π/200
-    turn: 6.28319      // 2π
+    degree: 0.017453292519943295,  // π/180
+    arcminute: 0.0002908882086657216,  // π/10800
+    arcsecond: 0.000004848136811095360,  // π/648000
+    gradian: 0.015707963267948967,  // π/200
+    turn: 6.283185307179586  // 2π
   }
 };

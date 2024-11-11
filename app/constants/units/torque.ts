@@ -34,7 +34,7 @@ export const torque: CategoryDefinition = {
   conversions: {
     'newton meter': 1,
     'kilogram meter': 9.80665,
-    'foot pound': 1.355818,
-    'inch pound': 0.112985
+    'foot pound': 1.3558179483314004,
+    'inch pound': 0.112984829027617
   }
 };

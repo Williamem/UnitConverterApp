@@ -28,23 +28,17 @@ export const power: CategoryDefinition = {
     horsepower: {
       names: ['horsepower', 'mechanical horsepower'],
       abbreviations: ['hp', 'HP'],
-      description: 'Traditional unit for engine power',
-      needsAsterisk: true,
-      asteriskReason: 'Multiple definitions exist; this is the mechanical/imperial horsepower',
+      description: 'Traditional unit for engine power (mechanical/imperial horsepower, approximately 745.7 watts)',
     },
     'metric horsepower': {
       names: ['metric horsepower', 'PS', 'Pferdestärke'],
       abbreviations: ['PS', 'cv', 'pk'],
-      description: 'Slightly different from mechanical horsepower',
-      needsAsterisk: true,
-      asteriskReason: 'Common in European engine specifications',
+      description: 'European standard for engine power, equal to 735.5 watts. Common in European engine specifications',
     },
     'electrical horsepower': {
       names: ['electrical horsepower'],
       abbreviations: ['hp(E)', 'HP(E)'],
-      description: 'Used for electrical motor power',
-      needsAsterisk: true,
-      asteriskReason: 'Different from mechanical horsepower, equals exactly 746 watts',
+      description: 'Used for electrical motor power, equals exactly 746 watts',
     },
     'BTU per hour': {
       names: ['BTU per hour', 'BTU/hour'],
@@ -63,10 +57,10 @@ export const power: CategoryDefinition = {
     watt: 1,
     kilowatt: 1000,
     megawatt: 1000000,
-    horsepower: 745.7,
+    horsepower: 745.69987158227022,
     'metric horsepower': 735.49875,
     'electrical horsepower': 746,
-    'BTU per hour': 0.29307107,
-    'foot pound per minute': 0.0225969658
+    'BTU per hour': 0.29307107017222222,
+    'foot pound per minute': 0.022596965840555555
   }
 };

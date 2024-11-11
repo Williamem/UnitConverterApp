@@ -63,6 +63,8 @@ export const distance: CategoryDefinition = {
       names: ['nautical mile'],
       abbreviations: ['nmi', 'NM'],
       description: 'Used in marine navigation, approximately one minute of arc of latitude',
+      needsAsterisk: true,
+      asteriskReason: 'Now defined as exactly 1852 meters, though originally based on Earth\'s circumference',
     },
     // Astronomical
     'light-year': {
@@ -75,7 +77,9 @@ export const distance: CategoryDefinition = {
     'astronomical unit': {
       names: ['astronomical unit', 'AU'],
       abbreviations: ['au', 'AU'],
-      description: 'Approximately the average distance between Earth and Sun',
+      description: 'The mean distance between Earth and Sun, now defined as exactly 149,597,870,700 meters',
+      needsAsterisk: true,
+      asteriskReason: 'Since 2012, defined as an exact value rather than based on observation',
     },
     parsec: {
       names: ['parsec'],
@@ -121,9 +125,9 @@ export const distance: CategoryDefinition = {
     'american football field': {
       names: ['american football field'],
       abbreviations: ['field'],
-      description: 'Length of an American american football field',
+      description: 'Length of an American football field from goal line to goal line',
       needsAsterisk: true,
-      asteriskReason: 'Based on American american football field length (100 yards)',
+      asteriskReason: 'Based on playing field length (100 yards), excluding end zones',
     },
     'empire state building': {
       names: ['empire state building'],
@@ -157,17 +161,17 @@ export const distance: CategoryDefinition = {
     yard: 0.9144,
     mile: 1609.344,
     'nautical mile': 1852,
-    'light-year': 9.461e15,
-    'astronomical unit': 1.496e11,
-    parsec: 3.086e16,
+    'light-year': 9.4607304725808e15,
+    'astronomical unit': 1.495978707e11,
+    parsec: 3.0856775814913673e16,
     furlong: 201.168,
     league: 4828.032,
     fathom: 1.8288,
     rod: 5.0292,
     chain: 20.1168,
     'american football field': 91.44,
-    'empire state building': 381,
-    'mount everest': 8848,
+    'empire state building': 381.0,
+    'mount everest': 8848.86,
     'burj khalifa': 828
   }
 };

@@ -18,9 +18,7 @@ export const fuelEconomy: CategoryDefinition = {
     'liters per 100 kilometers': {
       names: ['liters per 100 kilometers', 'litres per 100 kilometres'],
       abbreviations: ['L/100km', 'l/100km'],
-      description: 'European standard for fuel consumption',
-      needsAsterisk: true,
-      asteriskReason: 'Inverse measurement - lower numbers indicate better efficiency',
+      description: 'European standard for fuel consumption. Lower numbers indicate better efficiency.',
     },
     'miles per gallon': {
       names: ['miles per gallon', 'miles per US gallon'],
@@ -30,9 +28,7 @@ export const fuelEconomy: CategoryDefinition = {
     'miles per Imperial gallon': {
       names: ['miles per Imperial gallon'],
       abbreviations: ['mpg (imp)', 'MPG (imp)'],
-      description: 'UK measure of fuel efficiency',
-      needsAsterisk: true,
-      asteriskReason: 'Different from US MPG due to larger Imperial gallon',
+      description: 'UK measure of fuel efficiency, using the larger Imperial gallon (4.54609 L)',
     }
   },
   conversions: {
@@ -45,12 +41,12 @@ export const fuelEconomy: CategoryDefinition = {
       fromBase: (kpl: number) => 100 / kpl
     },
     'miles per gallon': {
-      toBase: (mpg: number) => mpg * 0.425144,
-      fromBase: (kpl: number) => kpl / 0.425144
+      toBase: (mpg: number) => mpg * 0.4251437075,
+      fromBase: (kpl: number) => kpl / 0.4251437075
     },
     'miles per Imperial gallon': {
-      toBase: (mpg: number) => mpg * 0.354006,
-      fromBase: (kpl: number) => kpl / 0.354006
+      toBase: (mpg: number) => mpg * 0.354006189,
+      fromBase: (kpl: number) => kpl / 0.354006189
     }
   }
 };
